@@ -23,11 +23,13 @@
     return window.matchMedia && matchMedia("(max-width: 700px)").matches ? "mobile" : "desktop";
   }
 
+  var CACHE = {};  // every file once per page: a restart (see start) costs nothing
   function get(url) {
+    if (CACHE[url]) return Promise.resolve(CACHE[url]);
     return fetch(url, { priority: "low" }).then(function (r) {
       if (!r.ok) throw new Error(url + " " + r.status);
       return r.arrayBuffer();
-    });
+    }).then(function (buf) { CACHE[url] = buf; return buf; });
   }
 
   // which clip next: idle and episode by turns, episodes from a shuffled bag
@@ -123,8 +125,33 @@
     return out;
   }
 
+  // iOS takes the decoder (canvas) or the buffered film (<video>) away from a page while Safari is in the background,
+  // and the film stands still when it comes back. So while the page is on screen, a film that has played and then
+  // shows no new frame for two seconds starts over from the files it already has (they are cached: no download).
   function start(video, base, opts) {
+    var inner = run(video, base, opts), live = true, last = 0, still = 0;
+    var probe = setInterval(function () {
+      if (!live || document.hidden) { still = 0; return; }
+      var now = inner.progress();
+      if (now > 0 && now === last) still++; else still = 0;
+      last = now;
+      if (still >= 2) {
+        still = 0;
+        last = 0;
+        inner.stop();
+        inner = run(video, base, opts);
+      }
+    }, 1000);
+    return {
+      stop: function () { live = false; clearInterval(probe); inner.stop(); },
+      then: function (id, cb) { return inner.then(id, cb); },
+      info: function () { return inner.info(); }
+    };
+  }
+
+  function run(video, base, opts) {
     opts = opts || {};
+    var drawn = 0;
     var lay = layout(), cod = codec(), stopped = false, timers = [];
     var have = {}, manifest = null, next = null, sb = null, ms = null, onEnd = [];
     video.removeAttribute("src");
@@ -313,6 +340,7 @@
         var f = frames.shift();
         draw(f);
         f.close();
+        drawn++;
         due = (now - due > 250 ? now : due) + 1000 / 24;
         if (!shown) { shown = true; video.style.visibility = "hidden"; }
       };
@@ -347,7 +375,8 @@
         if (!c || !sb) return cb && cb();
         get(url(c.files[lay])).then(function (buf) { have[id] = buf; onEnd.push(id); if (cb) setTimeout(cb, (ahead() + c.frames / 24) * 1000); });
       },
-      info: function () { return { layout: lay, codec: cod, loaded: Object.keys(have), mse: !!MS, canvas: cv && cv.info }; }
+      info: function () { return { layout: lay, codec: cod, loaded: Object.keys(have), mse: !!MS, canvas: cv && cv.info }; },
+      progress: function () { return cv && cv.info ? drawn : video.currentTime; }
     };
   }
 

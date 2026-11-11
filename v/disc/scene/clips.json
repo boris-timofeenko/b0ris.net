@@ -69,6 +69,33 @@
    }
   },
   {
+   "id": "pet",
+   "kind": "episode",
+   "frames": 288,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/pet.avc.mp4?v=61578096",
+      "bytes": 3884910
+     },
+     "av1": {
+      "url": "desktop/pet.av1.mp4?v=70a1c694",
+      "bytes": 882308
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/pet.avc.mp4?v=26418724",
+      "bytes": 2040822
+     },
+     "av1": {
+      "url": "mobile/pet.av1.mp4?v=6e7d08dd",
+      "bytes": 485508
+     }
+    }
+   }
+  },
+  {
    "id": "zoomies",
    "kind": "episode",
    "frames": 192,
