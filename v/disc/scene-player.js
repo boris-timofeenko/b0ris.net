@@ -264,13 +264,14 @@
       canvas.setAttribute("aria-hidden", "true");
       canvas.style.cssText = "position:absolute;pointer-events:none";
       video.parentNode.insertBefore(canvas, video.nextSibling);
-      var at = (getComputedStyle(video).objectPosition || "").split(" ").map(function (v) { return /%$/.test(v) ? parseFloat(v) / 100 : 0.5; });
+      // the canvas holds the frame at its own size and CSS crops it exactly as it crops the <video> (object-fit: cover):
+      // Safari reads drawImage's source rectangle for a VideoFrame its own way, so no cropping by hand
+      canvas.style.objectFit = "cover";
+      canvas.style.objectPosition = getComputedStyle(video).objectPosition || "50% 50%";
       var fit = function () {
-        var k = Math.min(window.devicePixelRatio || 1, 2), w = video.offsetWidth, h = video.offsetHeight;
         if (getComputedStyle(video.parentNode).position === "static") video.parentNode.style.position = "relative";
         canvas.style.left = video.offsetLeft + "px"; canvas.style.top = video.offsetTop + "px";
-        canvas.style.width = w + "px"; canvas.style.height = h + "px";
-        canvas.width = Math.round(w * k); canvas.height = Math.round(h * k);
+        canvas.style.width = video.offsetWidth + "px"; canvas.style.height = video.offsetHeight + "px";
       };
       fit();
       window.addEventListener("resize", fit);
@@ -296,10 +297,12 @@
           }
         } catch (e) { clip = null; } finally { feeding = false; }
       };
-      var draw = function (f) {  // object-fit: cover, at the <video>'s object-position
-        var fw = f.displayWidth, fh = f.displayHeight, cw = canvas.width, ch = canvas.height, k = Math.max(cw / fw, ch / fh);
-        var sw = cw / k, sh = ch / k;
-        ctx.drawImage(f, (fw - sw) * at[0], (fh - sh) * (at[1] === undefined ? at[0] : at[1]), sw, sh, 0, 0, cw, ch);
+      var draw = function (f) {  // the whole frame, 1:1 (the starter is smaller: the canvas follows it)
+        if (canvas.width !== f.displayWidth || canvas.height !== f.displayHeight) {
+          canvas.width = f.displayWidth;
+          canvas.height = f.displayHeight;
+        }
+        ctx.drawImage(f, 0, 0, canvas.width, canvas.height);
       };
       var tick = function (now) {  // 24 frames a second; if decoding falls behind, the film waits rather than skips
         if (stopped) return;

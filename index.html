@@ -49,7 +49,10 @@ img { image-rendering: pixelated; }
   .autorun { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; min-height: 560px; }
   .art { grid-area: 1 / 1 / 3 / 2; background-image: url(v/disc/scene/poster-mobile.jpg?v=aa169ae4); background-position: 50% 0; }
   .art video { object-position: 50% 50%; }
-  .head { right: 16px; top: 44px; }
+  /* the logo stays on top; the name and the job go down to the bottom of the film, off his face. The header takes the
+     film's grid row as its box (an absolute box in a grid can), so its bottom is the panel's top whatever the phone */
+  .head { grid-area: 1 / 1 / 2 / 2; left: 16px; right: 16px; top: 44px; bottom: 14px; display: flex; flex-direction: column; }
+  .who { margin-top: auto; }
   .who span { font-size: 15px; } .who .job { font-size: 14px; }
   .panel { grid-area: 2 / 1 / 3 / 2; border-left: 0; border-top: 2px solid #FFCC00; padding: 22px 16px 22px; }
   .btns { gap: 16px; }
@@ -80,7 +83,7 @@ img { image-rendering: pixelated; }
 <button class="mode" type="button" data-mode aria-pressed="false"><kbd>P</kbd>PlayStation 2</button>
 </nav>
 </main>
-<script src="v/disc/scene-player.js?v=2fcbd4cb"></script>
+<script src="v/disc/scene-player.js?v=2675e065"></script>
 <script src="v/disc/disc.js?v=f1e65d8b"></script>
 </body>
 </html>
