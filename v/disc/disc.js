@@ -16,7 +16,14 @@
     var stored = null, player = null;
     try { stored = localStorage.getItem("disc-film"); } catch (e) {}
     var mode = /[?&]ps2\b/.test(location.search) ? "ps2" : stored === "ps2" ? "ps2" : "normal";
-    var play = function () { var p = film.play(); if (p && p.catch) p.catch(function () {}); };
+    var play = function () {  // refused (Low Power Mode on iPhones): start at the first touch instead
+      var p = film.play();
+      if (p && p.catch) p.catch(function () {
+        var go = function () { document.removeEventListener("touchend", go, true); document.removeEventListener("click", go, true); film.play().catch(function () {}); };
+        document.addEventListener("touchend", go, true);
+        document.addEventListener("click", go, true);
+      });
+    };
     var show = function (m) {
       mode = m;
       art.classList.toggle("ps2", m === "ps2");

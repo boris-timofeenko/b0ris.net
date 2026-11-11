@@ -64,7 +64,20 @@
     video.removeAttribute("src");
     video.loop = false;
     video.muted = true;
-    var play = function () { var p = video.play(); if (p && p.catch) p.catch(function () {}); };
+    // iPhones in Low Power Mode (and some browsers) refuse to start even a muted film on their own: then the poster
+    // stays as a picture, without a play button over it, and the film starts at the visitor's first touch or key
+    var armed = false;
+    var arm = function () {
+      if (armed) return;
+      armed = true;
+      var go = function () {
+        ["touchend", "click", "keydown"].forEach(function (t) { document.removeEventListener(t, go, true); });
+        armed = false;
+        if (!stopped) video.play().catch(function () {});
+      };
+      ["touchend", "click", "keydown"].forEach(function (t) { document.addEventListener(t, go, true); });
+    };
+    var play = function () { var p = video.play(); if (p && p.catch) p.catch(arm); };
 
     fetch(base + "clips.json").then(function (r) { return r.json(); }).then(function (m) {
       if (stopped) return;

@@ -69,6 +69,33 @@
    }
   },
   {
+   "id": "zoomies",
+   "kind": "episode",
+   "frames": 192,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/zoomies.avc.mp4",
+      "bytes": 2629739
+     },
+     "av1": {
+      "url": "desktop/zoomies.av1.mp4",
+      "bytes": 649981
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/zoomies.avc.mp4",
+      "bytes": 1379205
+     },
+     "av1": {
+      "url": "mobile/zoomies.av1.mp4",
+      "bytes": 350289
+     }
+    }
+   }
+  },
+  {
    "id": "sniff_shake",
    "kind": "episode",
    "frames": 192,

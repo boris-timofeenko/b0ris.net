@@ -16,6 +16,9 @@ img { image-rendering: pixelated; }
 .art { grid-area: 1 / 1 / 2 / 3; overflow: hidden; background: #336 url(v/disc/scene/poster-desktop.jpg) 48% 60% / cover; }
 .art.ps2 { background-image: url(v/disc/scene-ps2.jpg); }
 .art video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% 60%; }
+/* a background, not a player: no play button over it when the phone will not start it by itself */
+.art video::-webkit-media-controls, .art video::-webkit-media-controls-start-playback-button,
+.art video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
 .head { position: absolute; left: clamp(16px, 4vw, 56px); top: clamp(16px, 6vh, 56px); right: calc(clamp(280px, 25vw, 360px) + 16px); }
 .head h1 { margin: 0; line-height: 0; }
 .head img { max-width: 100%; height: auto; }
