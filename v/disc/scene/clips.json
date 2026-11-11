@@ -5,12 +5,12 @@
   "desktop": {
    "width": 1280,
    "height": 1000,
-   "poster": "poster-desktop.jpg"
+   "poster": "poster-desktop.jpg?v=3aff9dbf"
   },
   "mobile": {
    "width": 700,
    "height": 1000,
-   "poster": "poster-mobile.jpg"
+   "poster": "poster-mobile.jpg?v=aa169ae4"
   }
  },
  "clips": [
@@ -21,21 +21,21 @@
    "files": {
     "desktop": {
      "avc": {
-      "url": "desktop/hub.avc.mp4",
+      "url": "desktop/hub.avc.mp4?v=bef34b07",
       "bytes": 1333845
      },
      "av1": {
-      "url": "desktop/hub.av1.mp4",
+      "url": "desktop/hub.av1.mp4?v=5387accc",
       "bytes": 377087
      }
     },
     "mobile": {
      "avc": {
-      "url": "mobile/hub.avc.mp4",
+      "url": "mobile/hub.avc.mp4?v=1a6d9f2f",
       "bytes": 691518
      },
      "av1": {
-      "url": "mobile/hub.av1.mp4",
+      "url": "mobile/hub.av1.mp4?v=e5412999",
       "bytes": 201122
      }
     }
@@ -48,21 +48,21 @@
    "files": {
     "desktop": {
      "avc": {
-      "url": "desktop/idle_look.avc.mp4",
+      "url": "desktop/idle_look.avc.mp4?v=71f92a54",
       "bytes": 2556264
      },
      "av1": {
-      "url": "desktop/idle_look.av1.mp4",
+      "url": "desktop/idle_look.av1.mp4?v=9b431712",
       "bytes": 645024
      }
     },
     "mobile": {
      "avc": {
-      "url": "mobile/idle_look.avc.mp4",
+      "url": "mobile/idle_look.avc.mp4?v=9a38fbbf",
       "bytes": 1319049
      },
      "av1": {
-      "url": "mobile/idle_look.av1.mp4",
+      "url": "mobile/idle_look.av1.mp4?v=90be25c2",
       "bytes": 339474
      }
     }
@@ -75,21 +75,21 @@
    "files": {
     "desktop": {
      "avc": {
-      "url": "desktop/zoomies.avc.mp4",
+      "url": "desktop/zoomies.avc.mp4?v=a491a773",
       "bytes": 2629739
      },
      "av1": {
-      "url": "desktop/zoomies.av1.mp4",
+      "url": "desktop/zoomies.av1.mp4?v=a2a86450",
       "bytes": 649981
      }
     },
     "mobile": {
      "avc": {
-      "url": "mobile/zoomies.avc.mp4",
+      "url": "mobile/zoomies.avc.mp4?v=19bdfc83",
       "bytes": 1379205
      },
      "av1": {
-      "url": "mobile/zoomies.av1.mp4",
+      "url": "mobile/zoomies.av1.mp4?v=ebe191b5",
       "bytes": 350289
      }
     }
@@ -102,21 +102,21 @@
    "files": {
     "desktop": {
      "avc": {
-      "url": "desktop/sniff_shake.avc.mp4",
+      "url": "desktop/sniff_shake.avc.mp4?v=0162f48e",
       "bytes": 2567920
      },
      "av1": {
-      "url": "desktop/sniff_shake.av1.mp4",
+      "url": "desktop/sniff_shake.av1.mp4?v=be87789c",
       "bytes": 623066
      }
     },
     "mobile": {
      "avc": {
-      "url": "mobile/sniff_shake.avc.mp4",
+      "url": "mobile/sniff_shake.avc.mp4?v=bcd35e6e",
       "bytes": 1331131
      },
      "av1": {
-      "url": "mobile/sniff_shake.av1.mp4",
+      "url": "mobile/sniff_shake.av1.mp4?v=a41a8747",
       "bytes": 324081
      }
     }
@@ -128,21 +128,21 @@
   "files": {
    "desktop": {
     "avc": {
-     "url": "desktop/hub.start.avc.mp4",
+     "url": "desktop/hub.start.avc.mp4?v=b9874f82",
      "bytes": 37580
     },
     "av1": {
-     "url": "desktop/hub.start.av1.mp4",
+     "url": "desktop/hub.start.av1.mp4?v=db82f9ff",
      "bytes": 49309
     }
    },
    "mobile": {
     "avc": {
-     "url": "mobile/hub.start.avc.mp4",
+     "url": "mobile/hub.start.avc.mp4?v=b7a109f3",
      "bytes": 21247
     },
     "av1": {
-     "url": "mobile/hub.start.av1.mp4",
+     "url": "mobile/hub.start.av1.mp4?v=6615e433",
      "bytes": 27389
     }
    }
