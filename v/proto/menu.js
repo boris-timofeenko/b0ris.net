@@ -1,5 +1,5 @@
-// The main menu: the CRT shows one project at a time, like a level preview. Arrows, hover on a medallion
-// or the keyboard (left, right, Enter) change the channel; between channels the screen shows a moment of snow.
+// The main menu: the CRT shows one project at a time, like a level preview. Arrows, hover on a medallion,
+// the keyboard (left, right, Enter) or a swipe change the channel; between channels the screen shows a moment of snow.
 (function () {
   var game = document.querySelector("[data-menu]");
   if (!game) return;
@@ -59,6 +59,7 @@
       flipTimer = setInterval(function () { imgs.forEach(function (im, k) { im.hidden = k !== n; }); n = (n + 1) % imgs.length; }, 450);
     }
     game.querySelectorAll("[data-level]").forEach(function (el) { el.classList.toggle("on", +el.getAttribute("data-level") === i); });
+    game.dispatchEvent(new CustomEvent("menu:select", { detail: { level: i } }));  // the dog on the desk looks at it
   }
 
   game.querySelector("[data-prev]").addEventListener("click", function () { set(current - 1); });
@@ -73,6 +74,17 @@
     if (current !== 0) return;
     game.style.setProperty("--glow", f.rgb.map(function (v) { return Math.round(Math.min(255, v * 1.25)); }).join(","));
   });
+  // on a phone a swipe across the room changes the channel too: to the left for the next, as a strip of cards would go
+  var swipe = null;
+  game.addEventListener("touchstart", function (e) {
+    swipe = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+  }, { passive: true });
+  game.addEventListener("touchend", function (e) {
+    if (!swipe) return;
+    var dx = e.changedTouches[0].clientX - swipe.x, dy = e.changedTouches[0].clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > 1.5 * Math.abs(dy)) set(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
   var dog = game.querySelector("[data-dog]");
   if (dog) dog.addEventListener("mouseenter", function () { set(0); if (window.Tape) Tape.video.currentTime = 5.8; });
 

@@ -8,13 +8,16 @@
 <link rel="stylesheet" href="../v/disc/disc.css?v=6da0a4ae">
 <style>
 html, body { margin: 0; background: #000; -webkit-text-size-adjust: 100%; }
-/* The main menu of P1 at full screen: 4:3 at the full height of the window, black bars at the sides,
-   the way a 640x480 game sat on a wide monitor. */
-.screen { --bar: 42px; --w: min(100vw, calc((100vh - var(--bar)) * 4 / 3)); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+/* The main menu of P1 at full screen. The room fills the width of the window (menu-room-wide.jpg, the 4:3 render seen
+   twice as wide); what happens in it sits on the stage, the 4:3 middle at the full height of the window, and --u is
+   a hundredth of the stage's width. The medallions and the key prompts keep to the edges of the window. */
+.screen { --bar: 42px; --w: min(100vw, calc((100vh - var(--bar)) * 4 / 3)); --sw: var(--w); --u: calc(var(--w) / 100); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
 @supports (height: 100dvh) { .screen { --w: min(100vw, calc((100dvh - var(--bar)) * 4 / 3)); min-height: 100dvh; } }
 .screen > .bar { align-self: stretch; min-height: var(--bar); }
-.game { position: relative; width: var(--w); aspect-ratio: 4 / 3; background: #000 url(../v/proto/menu-room.jpg?v=ae94d8cd) 0 0 / 100% 100%; container-type: inline-size; overflow: hidden; user-select: none; }
-.game > * { position: absolute; }
+.game { position: relative; box-sizing: border-box; width: 100%; height: calc(var(--w) * 3 / 4); overflow: hidden; user-select: none;
+  background: #000 url(../v/proto/menu-room-wide.jpg?v=d65f5413) 50% 0 / auto 100% no-repeat; }
+.game > *, .stage > * { position: absolute; }
+.stage { left: 50%; top: 0; width: var(--sw); height: calc(var(--sw) * 3 / 4); margin-left: calc(var(--sw) / -2); --u: calc(var(--sw) / 100); }
 /* the glass of the CRT in the render (tools/proto/room3d.py prints these) */
 .tv { left: 38.52%; top: 44.19%; width: 22.95%; height: 22.55%; background: #000; display: block; overflow: hidden; border-radius: 1.5% / 2%; }
 .tv > * { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -27,58 +30,85 @@ html, body { margin: 0; background: #000; -webkit-text-size-adjust: 100%; }
 .tv .glass { z-index: 4; pointer-events: none; background:
   linear-gradient(140deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 30%, rgba(255,255,255,0) 45%),
   repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0 1px, rgba(0,0,0,0) 1px 3px);
-  box-shadow: inset 0 0 2.4cqw rgba(0,0,0,0.75); border-radius: inherit; }
+  box-shadow: inset 0 0 calc(2.4 * var(--u)) rgba(0,0,0,0.75); border-radius: inherit; }
 @keyframes scrollup { from { transform: translateY(0); } to { transform: translateY(-57%); } }
-@keyframes panx { from { transform: translateX(0); } to { transform: translateX(calc(-100% + 27.5cqw)); } }
+@keyframes panx { from { transform: translateX(0); } to { transform: translateX(calc(-100% + calc(27.5 * var(--u)))); } }
 @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.35); } }
 
-.capbar { top: 1.2%; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 1.2cqw; pointer-events: none; }
-.capbar img { height: 3.3cqw; width: auto; image-rendering: pixelated; }
+.capbar { top: 1.2%; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: calc(1.2 * var(--u)); pointer-events: none; }
+.capbar img { height: calc(3.3 * var(--u)); width: auto; image-rendering: pixelated; }
 .capbar button { pointer-events: auto; background: none; border: 0; padding: 0; cursor: pointer; line-height: 0; }
 .capbar button:active { transform: translateY(1px); }
 /* what the project is, on the desk under the keyboard */
-.about { top: 90.6%; left: 24%; right: 24%; margin: 0; text-align: center; font: bold 1.75cqw/1.3 Arial, Helvetica, sans-serif; color: #FFFFFF; pointer-events: none;
+.about { top: 90.6%; left: 24%; right: 24%; margin: 0; text-align: center; font: bold calc(1.75 * var(--u))/1.3 Arial, Helvetica, sans-serif; color: #FFFFFF; pointer-events: none;
   text-shadow: -1px -1px 0 #000033, 1px -1px 0 #000033, -1px 1px 0 #000033, 1px 1px 0 #000033, 2px 2px 0 #000033; }
 
 /* the keys, bottom right, the way PS2 menus showed their button prompts */
-.prompts { right: 2%; bottom: 1.6%; margin: 0; font: bold 1.5cqw/1 Arial, Helvetica, sans-serif; color: #FFFFFF; pointer-events: none;
+.prompts { right: 2%; bottom: 1.6%; margin: 0; font: bold calc(1.5 * var(--u))/1 Arial, Helvetica, sans-serif; color: #FFFFFF; pointer-events: none;
   text-shadow: 1px 1px 0 #000033, -1px 0 0 #000033; }
 .prompts kbd { font: inherit; display: inline-block; min-width: 1.2em; padding: 0.25em 0.35em; margin: 0 0.25em 0 0.7em; text-align: center; color: #000033; background: #CCEEFF; border-radius: 0.3em; text-shadow: none; }
 @media (hover: none) { .prompts { display: none; } }
-.zero { width: 13%; line-height: 0; transition: transform 0.2s steps(2); }
+.zero { width: calc(13 * var(--u)); line-height: 0; transition: transform 0.2s steps(2); }
 .zero img { width: 100%; height: auto; }
-.zero .nm { display: block; width: max-content; margin: -0.6cqw auto 0; padding: 0.35cqw 0.9cqw; background: #000; color: #FFF; font: bold 1.55cqw/1 "Times New Roman", Times, serif; letter-spacing: 0.08em; text-transform: uppercase; }
+.zero[data-level="0"] { right: 0.6%; top: 5%; }
+.zero[data-level="1"] { left: 0.6%; top: 3%; }
+.zero[data-level="2"] { left: 0.6%; top: 23%; }
+.zero[data-level="3"] { right: 0.6%; top: 25%; }
+.zero[data-level="4"] { left: 0.6%; top: 43%; }
+.zero .nm { display: block; width: max-content; margin: calc(-0.6 * var(--u)) auto 0; padding: calc(0.35 * var(--u)) calc(0.9 * var(--u)); background: #000; color: #FFF; font: bold calc(1.55 * var(--u))/1 "Times New Roman", Times, serif; letter-spacing: 0.08em; text-transform: uppercase; }
 /* on the right wall a name wider than its medallion grows to the left, not off the screen */
 .zero.r { display: flex; flex-direction: column; align-items: flex-end; }
 .zero.r .nm { margin-right: 0; margin-left: 0; }
 .zero:hover, .zero.on { transform: translateY(-1.2%) rotate(-3deg); }
 .zero.on img { filter: brightness(1.12); }
-/* the dog stands on his blob shadow behind the CD */
-.dog { left: 66.5%; top: 47.5%; width: 18.75%; line-height: 0; cursor: pointer; }
+/* Tundra sits on her blob shadow behind the CD; the box and the layers come from scene3d/src/projects_tundra_pack.py,
+   v/disc/desk-dog.js draws her on the canvas over the still */
+.dog { left: 66.75%; top: 39.50%; width: 18.12%; line-height: 0; cursor: pointer; }
 .dog img { width: 100%; height: auto; }
-.spot { display: block; }
+.dog canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.spot { display: block; left: 77.3%; top: 75.45%; width: 11.18%; height: 8.95%; }
 .glow { inset: 0; pointer-events: none; mix-blend-mode: screen; transition: background 0.4s;
   background: radial-gradient(ellipse 26% 20% at 50% 55%, rgba(var(--glow, 120,150,200), 0.26), rgba(0,0,0,0) 100%),
               radial-gradient(ellipse 30% 12% at 50% 84%, rgba(var(--glow, 120,150,200), 0.3), rgba(0,0,0,0) 100%); }
 .dim { inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 42%, rgba(0,0,30,0) 45%, rgba(0,0,30,0.42) 100%); }
 
-.tag { position: absolute; z-index: 6; white-space: nowrap; font: bold 2.3cqw/1.1 Arial, Helvetica, sans-serif; color: #FFFF33; visibility: hidden; pointer-events: none;
+.tag { position: absolute; z-index: 6; white-space: nowrap; font: bold calc(2.3 * var(--u))/1.1 Arial, Helvetica, sans-serif; color: #FFFF33; visibility: hidden; pointer-events: none;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0 #000; }
-.tag::after { content: ""; display: block; width: 0; height: 0; margin: 0.3cqw auto 0; border: 1.1cqw solid transparent; border-top: 1.6cqw solid #FFFF33; border-bottom: 0; filter: drop-shadow(1px 1px 0 #000); }
-.tag.l::after { margin-left: 0.6cqw; }
+.tag::after { content: ""; display: block; width: 0; height: 0; margin: calc(0.3 * var(--u)) auto 0; border: calc(1.1 * var(--u)) solid transparent; border-top: calc(1.6 * var(--u)) solid #FFFF33; border-bottom: 0; filter: drop-shadow(1px 1px 0 #000); }
+.tag.l::after { margin-left: calc(0.6 * var(--u)); }
 a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
 
-/* phones: the screen is as wide as the phone, and what it shows is written under it */
+/* phones held upright: the room fills the screen, seen through a camera of its own (menu-room-phone.jpg, 1:2,
+   tools/proto/room3d.py --phone prints the places below); the stage is that picture as the screen crops it; the
+   medallions in a row along the top, what the chosen project is on the front of the desk */
 .info { display: none; }
 @media (max-width: 700px), (max-aspect-ratio: 4/5) {
-  .screen { justify-content: flex-start; --w: 100vw; }
+  .screen { --w: 100vw; --gh: calc(100vh - var(--bar)); --sw: max(100vw, calc(var(--gh) / 2)); position: relative; }
+  @supports (height: 100dvh) { .screen { --gh: calc(100dvh - var(--bar)); } }
+  .game { height: var(--gh); background: #000 url(../v/proto/menu-room-phone.jpg?v=8592a08a) 50% 50% / cover no-repeat; touch-action: pan-y; }
+  .stage { top: 50%; height: calc(var(--sw) * 2); margin-top: calc(var(--sw) * -1); }
+  .tv { left: 12.66%; top: 43.83%; width: 36.82%; height: 12.37%; }
+  .spot { left: 74.36%; top: 56.14%; width: 16.9%; height: 13.52%; }
+  .dog { left: 62.25%; top: 37%; width: 32%; }
+  .glow { background: radial-gradient(ellipse 40% 9% at 31% 50%, rgba(var(--glow, 120,150,200), 0.26), rgba(0,0,0,0) 100%),
+                      radial-gradient(ellipse 42% 5% at 31% 61%, rgba(var(--glow, 120,150,200), 0.3), rgba(0,0,0,0) 100%); }
+  .zero, .zero.r { width: 17vw; }
+  .zero .nm { display: none; }
+  .zero.on { transform: translateY(-4%) scale(1.12); }
+  .zero[data-level] { top: 3vw; right: auto; }
+  .zero[data-level="0"] { left: 2.5vw; } .zero[data-level="1"] { left: 21.75vw; } .zero[data-level="2"] { left: 41vw; }
+  .zero[data-level="3"] { left: 60.25vw; } .zero[data-level="4"] { left: 79.5vw; }
+  .capbar { top: calc(3vw + 18vw + 4vw); gap: 2vw; }
+  .capbar img { height: 6.6vw; }
   .about, .prompts { display: none; }
-  .info { display: block; box-sizing: border-box; width: 100%; flex: 1; padding: 18px 16px 20px; color: #CCEEFF; font: 17px/1.45 Arial, Helvetica, sans-serif; }
-  .info h2 { display: inline-block; margin: 0 0 8px; padding: 3px 8px; background: #FFF; color: #000; font: bold 15px/1 "Times New Roman", Times, serif; letter-spacing: 0.08em; text-transform: uppercase; }
-  .info p { margin: 0 0 14px; }
-  .info .open { display: inline-block; color: #000033; background: #FFFF66; padding: 6px 14px; text-decoration: none; font: 16px "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif; }
-  .info .all { margin-left: 8px; background: none; color: #FFFF66; border: 1px solid #6699CC; }
-  .tag { font-size: 3.4cqw; }
+  .tag { font-size: 3.4vw; }
+  .info { display: block; position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 0 5vw calc(5vw + env(safe-area-inset-bottom)); text-align: center;
+    color: #FFF; font: bold 4.6vw/1.3 Arial, Helvetica, sans-serif;
+    text-shadow: -1px -1px 0 #000033, 1px -1px 0 #000033, -1px 1px 0 #000033, 1px 1px 0 #000033, 2px 2px 0 #000033; }
+  .info h2 { display: none; }
+  .info p { margin: 0 0 4vw; }
+  .info .open { display: inline-block; margin: 0 1.5vw; padding: 0.35em 0.8em; color: #000033; background: #CCEEFF; border-radius: 0.3em; text-decoration: none; text-shadow: none; font: bold 4.4vw/1 Arial, Helvetica, sans-serif; }
+  .info .all { background: #FFFF66; }
 }
 </style>
 </head>
@@ -93,6 +123,8 @@ a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
 </nav>
 
 <div class="game" data-menu data-up="../" data-proj="https://projects.b0ris.net">
+<span class="dim" aria-hidden="true"></span>
+<div class="stage">
 <a class="tv" data-tape-watch href="https://projects.b0ris.net/uvcdv-capture/" aria-label="The selected project">
 <div data-ch="tape" aria-label="uvcdv-capture, playing my tape"><video data-tape muted loop playsinline autoplay preload="auto" src="../media/tape-clean.mp4?v=77ccc77c" aria-label="A clip from my MiniDV tape: the National Assembly in Belgrade, then my dog on a walk"></video><canvas data-scope="dither" width="220" height="169" aria-hidden="true"></canvas></div>
 <div data-ch="bolt" aria-label="Bolt" hidden><img src="../v/proto/tv/bolt-00.gif?v=f9b78617" alt=""><img src="../v/proto/tv/bolt-01.gif?v=777e9a08" alt="" hidden><img src="../v/proto/tv/bolt-02.gif?v=1770ad70" alt="" hidden><img src="../v/proto/tv/bolt-03.gif?v=4e6ebb5a" alt="" hidden><img src="../v/proto/tv/bolt-04.gif?v=e1c7c0a1" alt="" hidden><img src="../v/proto/tv/bolt-05.gif?v=3db861fa" alt="" hidden><img src="../v/proto/tv/bolt-06.gif?v=394e3b3c" alt="" hidden><img src="../v/proto/tv/bolt-07.gif?v=4099d8c2" alt="" hidden><img src="../v/proto/tv/bolt-08.gif?v=a8b8290f" alt="" hidden><img src="../v/proto/tv/bolt-09.gif?v=70c81fd9" alt="" hidden><img src="../v/proto/tv/bolt-10.gif?v=7f170734" alt="" hidden><img src="../v/proto/tv/bolt-11.gif?v=bd52ccd6" alt="" hidden><img src="../v/proto/tv/bolt-12.gif?v=4b5c3770" alt="" hidden><img src="../v/proto/tv/bolt-13.gif?v=e9ee8fec" alt="" hidden><img src="../v/proto/tv/bolt-14.gif?v=d5c98f9f" alt="" hidden><img src="../v/proto/tv/bolt-15.gif?v=09cc8b77" alt="" hidden></div>
@@ -103,22 +135,22 @@ a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
 <span class="glass"></span>
 </a>
 
-<span class="dim" aria-hidden="true"></span><span class="glow" aria-hidden="true"></span>
+<span class="glow" aria-hidden="true"></span>
+<p class="about" data-about aria-live="polite"></p>
+<a class="spot" href="../list/" aria-label="All projects"><span class="tag" style="right:10%;top:-60%">all projects</span></a>
+<div class="dog" data-dog><picture><source media="(max-width: 700px), (max-aspect-ratio: 4/5)" srcset="../v/disc/tundra/phone/sit.webp?v=a4e77b17"><img class="still" src="../v/disc/tundra/sit.webp?v=85cb52e5" width="435" height="650" alt="My dog Tundra, sitting on the desk"></picture><template data-layers="room"><img data-layer="base" src="../v/disc/tundra/base.webp?v=7e4ef276" alt=""><img data-layer="look-1" src="../v/disc/tundra/look-1.webp?v=2899832a" alt=""><img data-layer="wag" src="../v/disc/tundra/wag.webp?v=07d13c78" alt=""><img data-layer="blink" src="../v/disc/tundra/blink.webp?v=68795688" alt=""><img data-layer="look-2" src="../v/disc/tundra/look-2.webp?v=2b8c4ef3" alt=""><img data-layer="look-0" src="../v/disc/tundra/look-0.webp?v=d5dc47c9" alt=""></template><template data-layers="phone"><img data-layer="base" src="../v/disc/tundra/phone/base.webp?v=b671e32a" alt=""><img data-layer="look-1" src="../v/disc/tundra/phone/look-1.webp?v=c8871578" alt=""><img data-layer="wag" src="../v/disc/tundra/phone/wag.webp?v=5aefd453" alt=""><img data-layer="blink" src="../v/disc/tundra/phone/blink.webp?v=17a84e29" alt=""><img data-layer="look-2" src="../v/disc/tundra/phone/look-2.webp?v=846f1067" alt=""><img data-layer="look-0" src="../v/disc/tundra/phone/look-0.webp?v=2e8a27b3" alt=""></template><span class="tag" style="left:20%;top:-4%">my dog</span></div>
+</div>
+<a class="zero" data-level="1" href="https://projects.b0ris.net/bolt/"><img src="../v/proto/zero-bolt-wall.gif?v=e0fbbce4" width="104" height="110" alt="Bolt, photo viewer"><span class="nm">Bolt</span><span class="tag l" style="left:60%;top:-6%">photo viewer</span></a>
+<a class="zero" data-level="2" href="https://projects.b0ris.net/ne-slop-text/"><img src="../v/proto/zero-neslop-wall.gif?v=f4c5f193" width="104" height="110" alt="ne-slop-text, writing skill"><span class="nm">ne-slop-text</span><span class="tag l" style="left:60%;top:-6%">writing skill</span></a>
+<a class="zero" data-level="4" href="https://projects.b0ris.net/genealogy/"><img src="../v/proto/zero-genealogy-wall.gif?v=fc03e690" width="104" height="110" alt="Genealogy, family archive"><span class="nm">Genealogy</span><span class="tag l" style="left:60%;top:-6%">family archive</span></a>
+<a class="zero r" data-level="0" href="https://projects.b0ris.net/uvcdv-capture/"><img src="../v/proto/zero-uvcdv-wall.gif?v=f507d42b" width="104" height="110" alt="uvcdv-capture, MiniDV capture"><span class="nm">uvcdv-capture</span><span class="tag" style="right:30%;top:-6%">tape capture</span></a>
+<a class="zero r" data-level="3" href="https://projects.b0ris.net/gdeparkovka/"><img src="../v/proto/zero-parking-wall.gif?v=ac97946d" width="104" height="110" alt="GdeParkovka, parking map"><span class="nm">GdeParkovka</span><span class="tag" style="right:30%;top:-6%">parking map</span></a>
 <div class="capbar">
 <button type="button" data-prev aria-label="Previous project"><img src="../v/proto/arrow-left.gif?v=b15d7db3" width="32" height="32" alt=""></button>
 <img data-cap src="../v/proto/cap-tape.gif?v=f02ee3b1" alt="uvcdv-capture">
 <button type="button" data-next aria-label="Next project"><img src="../v/proto/arrow-right.gif?v=400df718" width="32" height="32" alt=""></button>
 </div>
-<p class="about" data-about aria-live="polite"></p>
 <p class="prompts"><kbd>&larr;</kbd><kbd>&rarr;</kbd>choose<kbd>Enter</kbd>open<kbd>Esc</kbd>back</p>
-
-<a class="zero" data-level="1" href="https://projects.b0ris.net/bolt/" style="left:0.6%;top:3%"><img src="../v/proto/zero-bolt-wall.gif?v=e0fbbce4" width="104" height="110" alt="Bolt, photo viewer"><span class="nm">Bolt</span><span class="tag l" style="left:60%;top:-6%">photo viewer</span></a>
-<a class="zero" data-level="2" href="https://projects.b0ris.net/ne-slop-text/" style="left:0.6%;top:23%"><img src="../v/proto/zero-neslop-wall.gif?v=f4c5f193" width="104" height="110" alt="ne-slop-text, writing skill"><span class="nm">ne-slop-text</span><span class="tag l" style="left:60%;top:-6%">writing skill</span></a>
-<a class="zero" data-level="4" href="https://projects.b0ris.net/genealogy/" style="left:0.6%;top:43%"><img src="../v/proto/zero-genealogy-wall.gif?v=fc03e690" width="104" height="110" alt="Genealogy, family archive"><span class="nm">Genealogy</span><span class="tag l" style="left:60%;top:-6%">family archive</span></a>
-<a class="zero r" data-level="0" href="https://projects.b0ris.net/uvcdv-capture/" style="left:86.4%;top:5%"><img src="../v/proto/zero-uvcdv-wall.gif?v=f507d42b" width="104" height="110" alt="uvcdv-capture, MiniDV capture"><span class="nm">uvcdv-capture</span><span class="tag" style="right:30%;top:-6%">tape capture</span></a>
-<a class="zero r" data-level="3" href="https://projects.b0ris.net/gdeparkovka/" style="left:86.4%;top:25%"><img src="../v/proto/zero-parking-wall.gif?v=ac97946d" width="104" height="110" alt="GdeParkovka, parking map"><span class="nm">GdeParkovka</span><span class="tag" style="right:30%;top:-6%">parking map</span></a>
-<a class="spot" href="../list/" style="left:77.3%;top:75.45%;width:11.18%;height:8.95%" aria-label="All projects"><span class="tag" style="right:10%;top:-60%">all projects</span></a>
-<div class="dog" data-dog><img src="../v/proto/dog.gif?v=d4eb01f6" width="150" height="150" alt="My dog, cut out of the tape"><span class="tag" style="right:30%;top:-10%">my dog</span></div>
 </div>
 
 <div class="info">
@@ -130,7 +162,10 @@ a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
 
 </main>
 <script src="../v/tape.js?v=ec9250d5"></script>
-<script src="../v/proto/menu.js?v=b7bddbb4"></script>
+<script src="../v/proto/menu.js?v=f3b9fe88"></script>
+<script src="../v/disc/tundra/frames.js?v=02a655b9"></script>
+<script src="../v/disc/tundra/phone/frames.js?v=1a488e34"></script>
+<script src="../v/disc/desk-dog.js?v=2825ee1f"></script>
 <script src="../v/disc/disc.js?v=1e49873c"></script>
 </body>
 </html>
