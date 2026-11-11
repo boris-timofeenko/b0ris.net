@@ -34,7 +34,9 @@
 
   // which clip next: idle and episode by turns, episodes from a shuffled bag
   function Chooser(manifest) {
-    var bag = [], last = null, lastKind = "episode", n = 0;
+    // the page opens on the starter (a light copy of the pause) and goes straight on to manifest.first (Tundra
+    // running to him to be stroked); until that has arrived, the pause plays again
+    var st = manifest.starter || {}, bag = [], last = null, lastKind = st.kind || "idle", n = 0, first = manifest.first;
     return function (have) {
       var clips = manifest.clips.filter(function (c) { return have[c.id]; });
       if (manifest.order === "sequence") {  // the stand-in: the old loop in pieces, in order
@@ -43,6 +45,13 @@
       }
       var idles = clips.filter(function (c) { return c.kind === "idle"; });
       var eps = clips.filter(function (c) { return c.kind === "episode"; });
+      if (first) {
+        if (!have[first]) return idles.length ? idles[0].id : null;  // null: the starter again
+        last = first;
+        first = null;
+        lastKind = "episode";
+        return last;
+      }
       var pick;
       if (lastKind === "episode" || !eps.length) {
         pick = idles.length ? idles[Math.floor(Math.random() * idles.length)].id : null;
@@ -52,7 +61,8 @@
         bag = bag.filter(function (id) { return have[id]; });
         if (!bag.length) bag = eps.map(function (c) { return c.id; }).sort(function () { return Math.random() - 0.5; });
         if (bag.length > 1 && bag[0] === last) bag.push(bag.shift());
-        pick = last = bag.shift();
+        pick = bag.shift();
+        if (pick) last = pick;  // nothing yet: keep the last one, so it is not the next episode
         lastKind = "episode";
       }
       return pick;
@@ -151,7 +161,7 @@
 
   function run(video, base, opts) {
     opts = opts || {};
-    var drawn = 0;
+    var drawn = 0, seq = [];
     var lay = layout(), cod = codec(), stopped = false, timers = [];
     var have = {}, manifest = null, next = null, sb = null, ms = null, onEnd = [];
     video.removeAttribute("src");
@@ -190,9 +200,9 @@
     function url(file) { return base + file[cod].url; }
 
     function loadAll() {  // idles first, then the episodes in random order, one at a time
-      var order = manifest.clips.slice().sort(function (a, b) {
-        var rank = { idle: 0, episode: 1, enter: 2, exit: 2 };
-        return rank[a.kind] - rank[b.kind] || Math.random() - 0.5;
+      var order = manifest.clips.slice().sort(function (a, b) {  // the first episode, then idles, then the rest
+        var rank = function (c) { return c.id === manifest.first ? -1 : { idle: 0, episode: 1, enter: 2, exit: 2 }[c.kind]; };
+        return rank(a) - rank(b) || Math.random() - 0.5;
       });
       (function one(i) {
         if (stopped || i >= order.length) return;
@@ -238,10 +248,11 @@
       }
       if (ahead() > 5) return;
       var id = onEnd.length ? onEnd[0] : next(have);
+      if (!have[id] && ahead() > 1) return;  // what comes next is still on its way: wait for it, repeat only if the film runs dry
       var buf = have[id] || (!manifest.clips.some(function (c) { return have[c.id] && c.kind === "idle"; }) && have["__starter"]);
       if (!buf) return;
       if (onEnd.length) onEnd.shift();
-      try { sb.appendBuffer(buf); } catch (e) { /* full: the next pump removes the old part first */ }
+      try { sb.appendBuffer(buf); seq.push(have[id] ? id : "starter"); } catch (e) { /* full: the next pump removes the old part first */ }
     }
 
     function twoVideos() {  // no MediaSource: two players take turns, the next one loaded and waiting at frame 0
@@ -314,6 +325,7 @@
               var id = next(have);
               var buf = have[id] || (!manifest.clips.some(function (c) { return have[c.id] && c.kind === "idle"; }) && have["__starter"]);
               if (!buf) { clip = null; break; }
+              seq.push(have[id] ? id : "starter");
               clip = parseMp4(buf);
               clip.i = 0;
               decoder.configure({ codec: clip.codec, description: clip.description });
@@ -375,7 +387,7 @@
         if (!c || !sb) return cb && cb();
         get(url(c.files[lay])).then(function (buf) { have[id] = buf; onEnd.push(id); if (cb) setTimeout(cb, (ahead() + c.frames / 24) * 1000); });
       },
-      info: function () { return { layout: lay, codec: cod, loaded: Object.keys(have), mse: !!MS, canvas: cv && cv.info }; },
+      info: function () { return { layout: lay, codec: cod, loaded: Object.keys(have), mse: !!MS, canvas: cv && cv.info, seq: seq }; },
       progress: function () { return cv && cv.info ? drawn : video.currentTime; }
     };
   }

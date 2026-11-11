@@ -1,6 +1,7 @@
 {
  "fps": 24,
  "order": "random",
+ "first": "pet",
  "layouts": {
   "desktop": {
    "width": 1280,
@@ -152,25 +153,26 @@
  ],
  "starter": {
   "id": "hub",
+  "kind": "idle",
   "files": {
    "desktop": {
     "avc": {
-     "url": "desktop/hub.start.avc.mp4?v=b9874f82",
-     "bytes": 37580
+     "url": "desktop/hub.start.avc.mp4?v=9b90f8b4",
+     "bytes": 96741
     },
     "av1": {
-     "url": "desktop/hub.start.av1.mp4?v=db82f9ff",
-     "bytes": 49309
+     "url": "desktop/hub.start.av1.mp4?v=954ca4d8",
+     "bytes": 144081
     }
    },
    "mobile": {
     "avc": {
-     "url": "mobile/hub.start.avc.mp4?v=b7a109f3",
-     "bytes": 21247
+     "url": "mobile/hub.start.avc.mp4?v=1885f07c",
+     "bytes": 50288
     },
     "av1": {
-     "url": "mobile/hub.start.av1.mp4?v=6615e433",
-     "bytes": 27389
+     "url": "mobile/hub.start.av1.mp4?v=a3bb935e",
+     "bytes": 73910
     }
    }
   }
