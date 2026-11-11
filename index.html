@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>b0ris.net: Boris Timofeenko</title>
+<link rel="stylesheet" href="v/disc/logo-zero.css">
+<style>
+html, body { margin: 0; background: #000; -webkit-text-size-adjust: 100%; }
+img { image-rendering: pixelated; }
+/* The autorun of a game disc, gone full screen: the art behind everything, the buttons on a dark panel on the right */
+.autorun { position: relative; height: 100vh; height: 100dvh; min-height: 520px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) clamp(280px, 25vw, 360px); }
+/* the scene: him by the pine over the sea, Tundra digging and running round him; a 24 s loop rendered in Blender,
+   in two versions (the normal film and the PlayStation 2 one); the still is the first frame of the loop */
+.art { grid-area: 1 / 1 / 2 / 3; overflow: hidden; background: #336 url(v/disc/scene/poster-desktop.jpg) 48% 60% / cover; }
+.art.ps2 { background-image: url(v/disc/scene-ps2.jpg); }
+.art video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% 60%; }
+.head { position: absolute; left: clamp(16px, 4vw, 56px); top: clamp(16px, 6vh, 56px); right: calc(clamp(280px, 25vw, 360px) + 16px); }
+.head h1 { margin: 0; line-height: 0; }
+.head img { max-width: 100%; height: auto; }
+/* the name and the job as two stickers on the art */
+.who { margin: 16px 0 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.who span { padding: 4px 10px; font: bold 17px/1.25 Arial, Helvetica, sans-serif; box-shadow: 3px 3px 0 #000; }
+.who .name { background: #FFCC00; color: #000033; text-transform: uppercase; letter-spacing: 0.02em; }
+.who .job { background: #000; color: #FFFFFF; font-size: 15px; }
+
+
+.panel { grid-area: 1 / 2 / 2 / 3; position: relative; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 0 clamp(16px, 2vw, 32px);
+  border-left: 2px solid #FFCC00;
+  background: linear-gradient(rgba(0,0,51,0.84) 0 17%, rgba(0,0,43,0.84) 17% 33%, rgba(0,0,34,0.84) 33% 50%, rgba(0,0,26,0.84) 50% 67%, rgba(0,0,17,0.84) 67% 83%, rgba(0,0,8,0.84) 83%); }
+.btns { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.btns a { display: block; width: 260px; max-width: 100%; aspect-ratio: 260 / 58; background-repeat: no-repeat; background-size: 100% 200%; background-position: 0 0; font-size: 0; color: transparent; image-rendering: pixelated; }
+.btns a:hover, .btns a:focus { background-position: 0 100%; outline: none; }
+/* which film plays: a switch at the foot of the panel, P on the keyboard */
+.mode { position: absolute; left: 0; right: 0; bottom: 18px; margin: 0 auto; width: max-content; cursor: pointer; background: none; border: 0; padding: 4px 6px;
+  color: #CCEEFF; font: 14px/1.3 "Arial Rounded MT Bold", "Arial Black", Arial, Helvetica, sans-serif; }
+.mode kbd { font: inherit; color: #FFFFFF; border: 1px solid #6699CC; padding: 0 5px; margin-right: 6px; }
+.mode:hover, .mode:focus-visible { color: #FFFF66; outline: none; }
+.mode[aria-pressed="true"] { color: #FFCC00; }
+.mode[aria-pressed="true"] kbd { border-color: #FFCC00; }
+
+
+/* phones: the art on top, the panel under it */
+@media (max-width: 700px) {
+  .autorun { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; min-height: 560px; }
+  .art { grid-area: 1 / 1 / 3 / 2; background-image: url(v/disc/scene/poster-mobile.jpg); background-position: 50% 0; }
+  .art video { object-position: 50% 50%; }
+  .head { right: 16px; top: 44px; }
+  .who span { font-size: 15px; } .who .job { font-size: 14px; }
+  .panel { grid-area: 2 / 1 / 3 / 2; border-left: 0; border-top: 2px solid #FFCC00; padding: 22px 16px 22px; }
+  .btns { gap: 16px; }
+  .mode { position: static; margin-top: 14px; }
+  .mode kbd { display: none; }
+}
+</style>
+</head>
+<body>
+<main class="autorun" data-autorun>
+<div class="art" role="img" aria-label="Me by a pine over the sea in Montenegro, and my dog Tundra digging and running round me">
+<video data-scene="v/disc/scene/" data-ps2="v/disc/scene-ps2.mp4" autoplay muted playsinline preload="auto"
+ disablepictureinpicture></video>
+</div>
+<header class="head">
+<h1>
+<span class="zl"><img class="zl-letters" src="v/disc/logo-zero.gif" width="374" height="68" alt="b0ris.net"><img class="zl-slash" src="v/disc/logo-zero-slash.gif" width="49" height="55" alt="" style="left:14.44%;top:10.29%;width:13.10%"></span>
+
+</h1>
+<p class="who"><span class="name">Boris Timofeenko</span><span class="job">Senior SDET and QA Tech Lead. Belgrade, Serbia. Open to relocation.</span></p>
+</header>
+<nav class="panel" aria-label="Main menu">
+<div class="btns">
+<a href="cv/" style="background-image:url(v/disc/btn-cv.gif)">CV</a>
+<a href="projects/" style="background-image:url(v/disc/btn-projects.gif)">Projects</a>
+<a href="contacts/" style="background-image:url(v/disc/btn-contacts.gif)">Contacts</a>
+</div>
+<button class="mode" type="button" data-mode aria-pressed="false"><kbd>P</kbd>PlayStation 2</button>
+</nav>
+</main>
+<script src="v/disc/scene-player.js"></script>
+<script src="v/disc/disc.js"></script>
+</body>
+</html>

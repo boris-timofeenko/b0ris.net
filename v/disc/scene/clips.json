@@ -1,0 +1,124 @@
+{
+ "fps": 24,
+ "order": "random",
+ "layouts": {
+  "desktop": {
+   "width": 1280,
+   "height": 1000,
+   "poster": "poster-desktop.jpg"
+  },
+  "mobile": {
+   "width": 700,
+   "height": 1000,
+   "poster": "poster-mobile.jpg"
+  }
+ },
+ "clips": [
+  {
+   "id": "hub",
+   "kind": "idle",
+   "frames": 96,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/hub.avc.mp4",
+      "bytes": 1333845
+     },
+     "av1": {
+      "url": "desktop/hub.av1.mp4",
+      "bytes": 377087
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/hub.avc.mp4",
+      "bytes": 691518
+     },
+     "av1": {
+      "url": "mobile/hub.av1.mp4",
+      "bytes": 201122
+     }
+    }
+   }
+  },
+  {
+   "id": "idle_look",
+   "kind": "idle",
+   "frames": 192,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/idle_look.avc.mp4",
+      "bytes": 2556264
+     },
+     "av1": {
+      "url": "desktop/idle_look.av1.mp4",
+      "bytes": 645024
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/idle_look.avc.mp4",
+      "bytes": 1319049
+     },
+     "av1": {
+      "url": "mobile/idle_look.av1.mp4",
+      "bytes": 339474
+     }
+    }
+   }
+  },
+  {
+   "id": "sniff_shake",
+   "kind": "episode",
+   "frames": 192,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/sniff_shake.avc.mp4",
+      "bytes": 2567920
+     },
+     "av1": {
+      "url": "desktop/sniff_shake.av1.mp4",
+      "bytes": 623066
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/sniff_shake.avc.mp4",
+      "bytes": 1331131
+     },
+     "av1": {
+      "url": "mobile/sniff_shake.av1.mp4",
+      "bytes": 324081
+     }
+    }
+   }
+  }
+ ],
+ "starter": {
+  "id": "hub",
+  "files": {
+   "desktop": {
+    "avc": {
+     "url": "desktop/hub.start.avc.mp4",
+     "bytes": 37580
+    },
+    "av1": {
+     "url": "desktop/hub.start.av1.mp4",
+     "bytes": 49309
+    }
+   },
+   "mobile": {
+    "avc": {
+     "url": "mobile/hub.start.avc.mp4",
+     "bytes": 21247
+    },
+    "av1": {
+     "url": "mobile/hub.start.av1.mp4",
+     "bytes": 27389
+    }
+   }
+  }
+ }
+}

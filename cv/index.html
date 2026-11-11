@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CV: Boris Timofeenko</title>
+<link rel="stylesheet" href="../v/disc/disc.css">
+<style>
+/* The CV as the back of the box, lying on a grey shelf: dark navy, yellow Arial Black, stars for bullets,
+   screenshots in white frames tilted by hand, the skills on a white box and the barcode. */
+html { background: #E6E6E6; -webkit-text-size-adjust: 100%; }
+body { margin: 0; color: #FFFFFF; font: 17px/1.5 Arial, Helvetica, sans-serif; }
+img { image-rendering: pixelated; }
+.back { max-width: 980px; margin: 36px auto 48px; padding: 40px 40px 28px; box-sizing: border-box; background: #000022; box-shadow: 8px 8px 0 rgba(0,0,0,0.35); }
+a { color: #99CCFF; }
+a:hover { color: #FFFF66; }
+h1 { margin: 0 0 4px; font: 48px/1.05 "Arial Black", "Arial Bold", Arial, sans-serif; color: #FFCC00; text-shadow: 4px 4px 0 #000; }
+.sub { margin: 0; font-size: 19px; color: #99CCFF; }
+.title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px 28px; margin: 0 0 28px; }
+/* the PDF as one more glossy button of the autorun */
+.pdf { margin: 4px 0 0; text-align: center; font-size: 13px; color: #9999CC; }
+.pdf a { display: block; width: 260px; aspect-ratio: 260 / 58; margin: 0 0 6px; background-repeat: no-repeat; background-size: 100% 200%; background-position: 0 0; font-size: 0; color: transparent; }
+.pdf a:hover, .pdf a:focus { background-position: 0 100%; outline: none; }
+.lead p { margin: 0 0 0.8em; max-width: 44em; }
+.lead p:first-child { font-size: 20px; line-height: 1.45; }
+/* section names: the yellow tag of the cover */
+h2 { display: inline-block; margin: 56px 0 18px; padding: 4px 12px 3px; background: #FFCC00; color: #000033; font: 17px/1.2 "Arial Black", "Arial Bold", Arial, sans-serif; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 3px 3px 0 #000; }
+.job { margin: 0 0 30px; }
+.job h3 { margin: 0; font: bold 21px/1.3 Arial, Helvetica, sans-serif; }
+.job .when { margin: 0 0 10px; color: #99CCFF; }
+.job .when b { color: #FFCC00; font-weight: bold; }
+.feat { list-style: none; margin: 0; padding: 0; }
+.feat li { position: relative; padding-left: 26px; margin: 0 0 10px; max-width: 46em; }
+.feat li::before { content: "\2605"; position: absolute; left: 0; top: 0; color: #FFCC00; }
+.feat b { color: #FFFFFF; }
+.plain { margin: 0 0 10px; max-width: 46em; }
+
+.shots { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
+.shots a { display: block; color: #FFFF99; text-decoration: none; font-size: 14px; line-height: 1.35; }
+.shots a:hover { color: #FFFFFF; }
+.shots img { display: block; width: 100%; height: auto; aspect-ratio: 220 / 168; object-fit: cover; border: 3px solid #FFFFFF; box-shadow: 3px 3px 0 #000; margin: 0 0 8px; box-sizing: border-box; image-rendering: auto; }
+.shots li:nth-child(1) a { transform: rotate(-3deg); } .shots li:nth-child(2) a { transform: rotate(2deg); } .shots li:nth-child(3) a { transform: rotate(-1.5deg); }
+.shots li:nth-child(4) a { transform: rotate(2.5deg); } .shots li:nth-child(5) a { transform: rotate(-2deg); }
+.shots b { display: block; margin: 0 0 2px; color: #FFFFFF; font-size: 15px; }
+.more { margin: 20px 0 0; }
+
+.req { background: #FFFFFF; color: #000000; padding: 14px 16px 12px; font-size: 15px; line-height: 1.4; box-shadow: 6px 6px 0 #000; }
+.req h2 { display: block; margin: 0 0 8px; padding: 0 0 3px; background: none; box-shadow: none; color: #000; font: bold 15px/1.2 Arial, Helvetica, sans-serif; letter-spacing: 0; border-bottom: 2px solid #000; }
+.req dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 5px 18px; }
+.req dt { font-weight: bold; }
+.req dd { margin: 0; }
+
+.end { margin: 56px 0 0; display: flex; justify-content: flex-end; }
+.code { width: 210px; background: #FFFFFF; padding: 4px; line-height: 0; }
+.code img { width: 100%; height: auto; }
+@media (max-width: 860px) { .shots { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 1040px) { .back { margin: 24px 16px 40px; } }
+@media (max-width: 600px) {
+  .pdf { text-align: left; }
+  .back { margin: 0; padding: 28px 16px 24px; box-shadow: none; }
+  h1 { font-size: 34px; text-shadow: 3px 3px 0 #000; }
+  .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .req dl { grid-template-columns: minmax(0, 1fr); gap: 0; } .req dd { margin: 0 0 8px; }
+}
+</style>
+</head>
+<body data-page="cv">
+<nav class="bar" aria-label="Disc">
+<a href="../" data-back><kbd>Esc</kbd> Main menu</a>
+<span class="gap"></span>
+<a href="../cv/" data-nav="cv">CV</a>
+<a href="../projects/" data-nav="projects">Projects</a>
+<a href="../contacts/" data-nav="contacts">Contacts</a>
+</nav>
+
+<main class="back">
+<header class="title">
+<div><h1>Boris Timofeenko</h1>
+<p class="sub">Senior SDET and QA Tech Lead. Belgrade, Serbia. Open to relocation.</p></div>
+<p class="pdf"><a href="https://b0ris.net/boris-timofeenko-cv.pdf" style="background-image:url(../v/disc/btn-pdf.gif)">CV as PDF</a>2 pages, 337 KB</p>
+</header>
+<div class="lead">
+<p>At SOLmate, a regulated fintech in South Africa with about 100k users, I lead 3 QA engineers and sign off releases. Before that I spent four years testing flight bookings at Typeable, and before QA I wrote frontend code.</p>
+<p>My guess is that manual testing will be partly automated too, with the most routine checks going to an AI testing agent. Junior manual QA will probably disappear, and the people who stay will be the ones who can drive AI tools to keep the same quality and go faster.</p>
+<p>In the evenings I build small tools with Claude Code; they are on <a href="../projects/">the projects screen</a>. I write the spec and test what the agent builds on real hardware and data. I could test the MiniDV capture tool only on my own camcorder.</p>
+</div>
+
+<h2>Also on this disc</h2>
+<ul class="shots">
+<li><a href="https://projects.b0ris.net/bolt/"><img src="../v/proto/box-bolt.png" width="220" height="168" alt=""><b>Bolt</b>A fast photo viewer for macOS. The next photo opens in 3.9&nbsp;ms.</a></li>
+<li><a href="https://projects.b0ris.net/uvcdv-capture/"><img src="../v/proto/box-uvcdv.png" width="220" height="173" alt=""><b>uvcdv-capture</b>Captures MiniDV tapes over USB on a Mac that has no FireWire.</a></li>
+<li><a href="https://projects.b0ris.net/ne-slop-text/"><img src="../v/disc/box-neslop.png" width="220" height="156" alt=""><b>ne-slop-text</b>A Claude Code skill that moves a text away from what models write by default.</a></li>
+<li><a href="https://projects.b0ris.net/gdeparkovka/"><img src="../v/proto/box-parking.png" width="220" height="162" alt=""><b>GdeParkovka</b>A map of free parking in Russia. Drivers add the points.</a></li>
+<li><a href="https://projects.b0ris.net/genealogy/"><img src="../v/disc/box-genealogy.png" width="220" height="168" alt=""><b>Genealogy</b>A knowledge base of my mother&rsquo;s family line, in plain files and git.</a></li>
+</ul>
+<p class="more"><a href="../projects/">All five on the projects screen &#9654;</a></p>
+
+<h2>Experience</h2>
+<div class="job">
+<h3>QA Tech Lead, SOLmate</h3>
+<p class="when"><b>Nov 2025 to now.</b> Remote, Johannesburg, South Africa</p>
+<p class="plain">SOLmate offers eWallets and money transfers to the underbanked and is regulated by the FSCA.</p>
+<ul class="feat">
+<li>Our automation was moving slowly until management pushed us to speed up. We used AI to automate the test cases already in Kiwi TCMS, most of them inherited from the team before us. We now have about <b>450</b> end-to-end scenarios for the Flutter app and two AI agents, covering <b>65%</b> of the regression plan. With the dev team we built the Flutter tests on Patrol with a Gherkin layer, and flaky tests dropped from about 20% to about <b>5%</b>. A regression run now takes <b>4 hours</b> instead of 2 days, and releases went from every three weeks to every week and a half.</li>
+<li>I also test the AI support agent and the WhatsApp onboarding agent for prompt injection and data leaks. On the very first prototype of the onboarding agent, the model blocked people a month or so over 18, because a neural net doesn&rsquo;t always know what today&rsquo;s date is. Someone who has just turned 18 must be able to register, so I wrote a test that fails on exactly that.</li>
+<li>Two of the engineers I lead were manual testers; in five months they moved to automation. An AI agent now checks low-risk Jira tickets, picked by a &ldquo;blast radius&rdquo; field, under QA supervision. It replaced about 5 to 10 manual ticket checks per release.</li>
+</ul>
+</div>
+<div class="job">
+<h3>QA Engineer, then Senior QA Engineer, Typeable</h3>
+<p class="when"><b>Sep 2021 to Aug 2025.</b> Remote, Montenegro</p>
+<p class="plain">At Typeable I worked on B2B flight and hotel booking with Amadeus GDS and NDC carriers.</p>
+<ul class="feat">
+<li>I grew automated coverage of the core booking product from about 80 to about <b>550</b> cases, in Selenium and later Playwright, and full regression went from two days of manual work to a same-day run.</li>
+<li>New NDC carriers and the ConnexPay payment integration I tested by hand before they went live. For a new Montenegrin local-listings product I built the regression suite from scratch in Playwright and JavaScript, for a one-week release cycle.</li>
+<li>When I was promoted to senior in 2022, I took over test automation on two products and started test code review in the team.</li>
+</ul>
+</div>
+<div class="job">
+<h3>Research Engineer, ITMO University</h3>
+<p class="when"><b>Nov 2020 to Jun 2021.</b> Saint Petersburg</p>
+<p class="plain">My MSc thesis was on semantic segmentation of grayscale satellite images into land cover, with a U-Net in Keras and TensorFlow on the LandCover.ai dataset.</p>
+</div>
+<div class="job">
+<h3>Frontend Developer, Taptima and FEIP</h3>
+<p class="when"><b>Oct 2018 to Jan 2021.</b></p>
+<p class="plain">I wrote production JavaScript and TypeScript at two companies.</p>
+</div>
+
+<h2>Education</h2>
+<div class="job">
+<h3>MSc, Big Data and Machine Learning</h3>
+<p class="when"><b>2020 to 2022.</b> ITMO University, Saint Petersburg</p>
+</div>
+<div class="job">
+<h3>BSc, Applied Mathematics and Informatics</h3>
+<p class="when"><b>2016 to 2020.</b> Far Eastern Federal University, Vladivostok</p>
+</div>
+<ul class="feat">
+<li>3rd place at the ACM ICPC quarterfinal in 2018.</li>
+<li>A research grant at Far Eastern Federal University for variational autoencoders that generate multitrack MIDI music.</li>
+<li>English C1, Russian native.</li>
+</ul>
+
+<section class="req" style="margin-top:56px">
+<h2>Skills</h2>
+<dl>
+<dt>Test automation</dt><dd>Playwright (TypeScript, JavaScript), Patrol (Flutter), REST API testing, Cucumber/Gherkin, PyTest, Selenium, Appium, Postman</dd>
+<dt>AI and LLM quality</dt><dd>Agent testing, LLM evaluation, LLM-as-a-judge, tool-call checks, prompt injection, red-teaming, PII leakage, OpenAI and Anthropic APIs</dd>
+<dt>Engineering</dt><dd>TypeScript, JavaScript, Python, Dart, SQL, Bash; GitHub Actions, GitLab CI, Docker, Kubernetes, Firebase Test Lab, BrowserStack</dd>
+<dt>Performance</dt><dd>k6, JMeter, Lighthouse, Grafana, Sentry, Elasticsearch, Kibana</dd>
+<dt>Domains</dt><dd>Fintech and payments, card issuing, KYC, AML, POPIA; B2B travel, GDS, NDC</dd>
+</dl>
+</section>
+
+<footer class="end"><div class="code"><img src="../v/proto/barcode.gif" width="288" height="70" alt="Barcode that encodes b0ris.net"></div></footer>
+</main>
+</body>
+</html>

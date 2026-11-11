@@ -1,0 +1,253 @@
+/* b0ris.net
+   Type: XCharter, the Charter of Boris's PDF CV, self-hosted (fonts/). Accent: the olive of that CV.
+   The pictures are measurements of his own data: scopes computed from a MiniDV clip, parking points,
+   frame times, archive records. They move only when they are measuring something. */
+
+@font-face { font-family: "XCharter"; src: url(fonts/xcharter-roman.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "XCharter"; src: url(fonts/xcharter-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "XCharter"; src: url(fonts/xcharter-bold.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "XCharter"; src: url(fonts/xcharter-bolditalic.woff2) format("woff2"); font-weight: 700; font-style: italic; font-display: swap; }
+
+:root {
+  --paper: #FAFAF6;
+  --ink: #1A1C17;
+  --body: #2B2E27;
+  --muted: #6E7266;
+  --olive: #4E5A24;
+  --olive-soft: #E7E9DC;
+  --rule: #DCDAD1;
+  --red: #B3261E;
+  --amber: #B98322;
+  --steel: #3E6D8E;
+  --stone: #A3A59C;
+  --night: #121310;
+  --night-2: #0B0C0A;
+  --night-ink: #E4E3DA;
+  --night-muted: #8C8F84;
+  --serif: "XCharter", Charter, "Bitstream Charter", "Charis SIL", Cambria, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --wide: 1120px;
+  --text: 690px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  color: var(--body);
+  font: 18px/1.6 var(--serif);
+  font-variant-numeric: lining-nums;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--olive); color: #FFF; }
+
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--olive); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--olive); text-decoration-thickness: 2px; }
+
+.wrap { max-width: var(--wide); margin: 0 auto; padding: 0 32px; }
+
+/* top line */
+.top { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 26px 0 0; }
+.mark { font-weight: 700; font-size: 21px; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
+.mark .zero { color: var(--olive); }
+.mark:hover { color: var(--ink); }
+.top nav { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 16px; }
+.top nav a { text-decoration-color: transparent; }
+.top nav a:hover, .top nav a[aria-current] { text-decoration-color: var(--olive); }
+.top nav a[aria-current] { text-decoration-thickness: 2px; }
+
+h1, h2, h3 { color: var(--ink); font-weight: 700; }
+h1 { font-size: clamp(40px, 5.6vw, 64px); line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 14px; }
+h2 {
+  font-size: 19px; line-height: 1.4; margin: 0; color: var(--olive);
+  font-variant-caps: all-small-caps; letter-spacing: 0.08em; font-weight: 700;
+}
+h3 { font-size: 22px; line-height: 1.25; margin: 0 0 4px; }
+p { margin: 0 0 16px; }
+.lede { font-size: 22px; line-height: 1.45; color: var(--ink); margin-bottom: 18px; }
+.meta, .when { font-size: 15px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.when { margin: 0 0 10px; }
+code, pre, kbd { font-family: var(--mono); font-size: 14.5px; }
+code { background: var(--olive-soft); padding: 1px 4px; border-radius: 2px; }
+pre { background: #F0EFE8; border-left: 3px solid var(--olive); padding: 12px 16px; margin: 0 0 18px; overflow-x: auto; line-height: 1.5; }
+pre code { background: none; padding: 0; }
+kbd { display: inline-block; min-width: 1.4em; padding: 0 5px; border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 3px; background: #FFF; text-align: center; font-size: 13px; line-height: 1.6; }
+ul { margin: 0 0 16px; padding-left: 1.1em; }
+li { margin: 0 0 6px; }
+
+/* sections: a label on the left, as in the PDF CV, the content on the right */
+.block { display: grid; grid-template-columns: 210px minmax(0, var(--text)); gap: 0 56px; padding: 52px 0 0; }
+.block > h2 { padding-top: 5px; border-top: 1px solid var(--olive); }
+.block > .body { border-top: 1px solid var(--rule); padding-top: 18px; }
+.job { margin: 0 0 30px; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.job-head .meta { white-space: nowrap; }
+
+/* tables */
+table { border-collapse: collapse; width: 100%; font-size: 16px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 14px 8px 0; border-bottom: 1px solid var(--rule); }
+thead th { font-size: 14px; color: var(--muted); font-weight: 400; font-variant-caps: all-small-caps; letter-spacing: 0.08em; }
+th[scope="row"] { color: var(--ink); font-weight: 700; white-space: nowrap; }
+td.num, .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table { overflow-x: auto; margin: 0 0 20px; }
+
+/* CV intro and the monitor with live scopes */
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 540px); gap: 56px; align-items: start; padding: 64px 0 16px; }
+.intro .role { font-size: 21px; line-height: 1.4; color: var(--ink); margin-bottom: 26px; }
+.intro .role span { color: var(--muted); }
+
+.monitor { margin: 6px 0 0; background: var(--night); color: var(--night-ink); padding: 14px; border-radius: 3px; }
+.monitor video, .monitor .poster { display: block; width: 100%; aspect-ratio: 4 / 3; background: var(--night-2); object-fit: cover; }
+.scopes { display: grid; grid-template-columns: minmax(0, 1fr) 128px; gap: 12px; margin-top: 12px; }
+.scope { position: relative; background: var(--night-2); }
+.scope canvas, .scope svg { display: block; width: 100%; height: auto; }
+.scope svg { position: absolute; inset: 0; height: 100%; }
+.scope svg line, .scope svg circle, .scope svg rect { stroke: rgba(228, 227, 218, 0.16); fill: none; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.scope svg text { fill: var(--night-muted); font: 9px var(--mono); }
+.scope svg .target { stroke: rgba(228, 227, 218, 0.34); }
+.readout { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 10px; font: 12.5px/1.4 var(--mono); color: var(--night-muted); font-variant-numeric: tabular-nums; }
+.readout b { color: var(--night-ink); font-weight: 400; }
+.readout .tc { margin-left: auto; color: var(--night-ink); }
+.monitor figcaption { margin-top: 10px; font-size: 14.5px; line-height: 1.45; color: var(--night-muted); }
+
+/* project list: each project is shown by a picture of its own data */
+.projects { margin: 0; padding: 0; list-style: none; }
+.project { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 28px; padding: 20px 0; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.projects li:first-child .project { padding-top: 4px; }
+.project .portrait { background: #FFF; border: 1px solid var(--rule); padding: 10px; display: flex; align-items: center; justify-content: center; min-height: 136px; }
+.project .portrait img { display: block; width: 100%; height: auto; }
+.project h3 { text-decoration: underline; text-decoration-color: var(--olive); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.project:hover h3 { color: var(--olive); text-decoration-thickness: 2px; }
+.project p { margin: 0 0 6px; }
+.projects.big .project { grid-template-columns: 360px minmax(0, 1fr); gap: 40px; padding: 30px 0; }
+.projects.big .project .portrait { min-height: 200px; padding: 14px; }
+
+/* project pages */
+.head { padding: 56px 0 8px; max-width: 860px; }
+.kicker { font-size: 15px; color: var(--muted); margin: 0 0 10px; font-variant-caps: all-small-caps; letter-spacing: 0.1em; }
+.kicker a { color: var(--muted); }
+.feature { margin: 26px 0 8px; background: #FFF; border: 1px solid var(--rule); padding: 24px 24px 16px; }
+.feature figcaption, .shot figcaption { font-size: 15px; line-height: 1.5; color: var(--muted); margin-top: 12px; max-width: 760px; }
+.feature .chart { display: block; width: 100%; height: auto; max-height: 560px; }
+.cols { display: grid; grid-template-columns: 210px minmax(0, var(--text)); gap: 0 56px; padding-top: 36px; }
+.facts { font-size: 15.5px; line-height: 1.45; }
+.facts dt { color: var(--olive); font-variant-caps: all-small-caps; letter-spacing: 0.1em; font-weight: 700; font-size: 14px; margin: 0; }
+.facts dd { margin: 0 0 14px; color: var(--ink); }
+.prose h2 { margin: 34px 0 10px; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px 24px; margin: 8px 0 24px; }
+.shot { margin: 0; }
+.shot a { display: block; border: 1px solid var(--rule); background: #FFF; }
+.shot img { display: block; width: 100%; height: auto; }
+.shot .meta { white-space: nowrap; }
+.shot.wide { grid-column: 1 / -1; }
+
+/* charts */
+.chart text { font-family: var(--serif); fill: var(--muted); font-size: 13px; }
+.chart .tick { font-size: 12px; font-variant-numeric: tabular-nums; }
+.chart .grid { stroke: var(--rule); stroke-width: 1; }
+.chart.parking circle.up { fill: var(--olive); }
+.chart.parking circle.down { fill: var(--red); }
+.chart.parking circle.even { fill: var(--stone); }
+.chart.parking circle { opacity: 0.86; }
+.chart .scale line { stroke: var(--ink); stroke-width: 1.2; }
+.chart .scale text { text-anchor: middle; fill: var(--ink); font-size: 12px; }
+.chart.bolt .bar { fill: var(--ink); }
+.chart.bolt .budget { stroke: var(--red); stroke-width: 1.4; }
+.chart.bolt .median { stroke: var(--olive); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.chart.bolt .note { fill: var(--red); font-size: 13px; }
+.chart.bolt .note.strong { fill: var(--olive); }
+.chart.bolt .note.sub { fill: var(--muted); font-size: 12px; }
+.chart.genealogy .doc { stroke: var(--olive); fill: var(--olive); }
+.chart.genealogy .inference { stroke: var(--amber); fill: var(--amber); }
+.chart.genealogy .hypothesis { stroke: var(--stone); fill: var(--stone); }
+.chart.genealogy .witness { stroke: var(--steel); fill: var(--steel); }
+.chart.genealogy .rejected { stroke: var(--red); fill: var(--red); }
+.chart.genealogy .span { stroke-width: 1.6; stroke-linecap: round; opacity: 0.7; }
+.chart.genealogy.mini .span { stroke-width: 1; }
+.chart.genealogy .at { stroke: none; }
+.chart.genealogy .sweep { fill: #FFF; }
+.chart.neslop .lane { stroke: var(--rule); }
+.chart.neslop .row { fill: var(--ink); font-size: 15px; }
+.chart.neslop .default { fill: var(--stone); opacity: 0.85; }
+.chart.neslop .draft { fill: #FFF; stroke: var(--ink); stroke-width: 1.6; }
+.chart.neslop .rev { fill: var(--olive); }
+.chart.neslop .move { stroke: var(--olive); stroke-width: 2; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 22px; list-style: none; padding: 0; margin: 12px 0 0; font-size: 14.5px; color: var(--muted); }
+.legend li { margin: 0; }
+.legend .key { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; vertical-align: 0; }
+.legend .n { font-variant-numeric: tabular-nums; color: var(--ink); }
+.key.doc, .key.up { background: var(--olive); } .key.inference { background: var(--amber); } .key.hypothesis, .key.even { background: var(--stone); }
+.key.witness { background: var(--steel); } .key.rejected, .key.down { background: var(--red); }
+.key.draft { background: #FFF; box-shadow: inset 0 0 0 1.5px var(--ink); } .key.rev { background: var(--olive); } .key.default { background: var(--stone); }
+
+/* DV against --vhs, one clip, a divider to drag */
+.compare { position: relative; aspect-ratio: 4 / 3; background: var(--night-2); overflow: hidden; touch-action: pan-y; user-select: none; cursor: ew-resize; }
+.compare video, .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.compare .over { clip-path: inset(0 0 0 var(--split, 50%)); }
+.compare .divider { position: absolute; top: 0; bottom: 0; left: var(--split, 50%); width: 2px; margin-left: -1px; background: #FFF; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25); }
+.compare .divider::after { content: ""; position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; background: #FFF; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35); }
+.compare .tag { position: absolute; top: 12px; padding: 3px 8px; background: rgba(18, 19, 16, 0.72); color: #FFF; font: 13px/1.3 var(--mono); }
+.compare .tag.l { left: 12px; } .compare .tag.r { right: 12px; }
+.feature.dark { background: var(--night); border-color: var(--night); }
+.feature.dark figcaption { color: var(--night-muted); }
+
+footer { margin-top: 72px; padding: 22px 0 40px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; }
+footer p { margin: 0; }
+footer a { color: var(--muted); }
+
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* motion: only charts move, once, when they come into view */
+@media (prefers-reduced-motion: no-preference) {
+  .js .chart.parking:not(.play) circle, .js .chart.bolt:not(.play) .bar, .js .chart.neslop:not(.play) .rev,
+  .js .chart.bolt:not(.play) .thumb { opacity: 0; }
+  .js .chart.neslop:not(.play) .move { stroke-dasharray: 1 999; }
+  .chart.parking.play circle { animation: pop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) both; animation-delay: calc(var(--i) * 11ms); transform-box: fill-box; transform-origin: center; }
+  .chart.bolt.play .bar { animation: grow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i) * 40ms); transform-box: fill-box; transform-origin: 50% 100%; }
+  .chart.bolt.play .thumb { animation: fade 0.3s both; animation-delay: calc(var(--i) * 40ms); }
+  .chart.genealogy.play .sweep { animation: sweep 3.2s cubic-bezier(0.45, 0, 0.2, 1) both; transform-box: fill-box; }
+  .js .chart.genealogy:not(.play) .sweep { transform: none; }
+  .chart.neslop.play .move { animation: draw 0.9s ease-out both; animation-delay: calc(0.4s + var(--i) * 0.18s); }
+  .chart.neslop.play .rev { animation: pop 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.3) both; animation-delay: calc(1.1s + var(--i) * 0.18s); transform-box: fill-box; transform-origin: center; }
+}
+.chart.genealogy .sweep { transform: translateX(100%); transform-box: fill-box; }
+.js .chart.genealogy:not(.play) .sweep { transform: none; }
+@media (prefers-reduced-motion: reduce) { .chart.genealogy .sweep { display: none; } }
+@keyframes pop { from { opacity: 0; transform: scale(0); } to { opacity: 0.86; transform: scale(1); } }
+@keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sweep { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes draw { from { stroke-dasharray: 1 999; } to { stroke-dasharray: 999 0; } }
+
+@media (max-width: 900px) {
+  .intro { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-top: 40px; }
+  .block, .cols { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .block > h2 { border-top: 0; padding: 0 0 6px; }
+  .cols .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0 20px; margin-bottom: 18px; }
+  .project, .projects.big .project { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 17px; }
+  .wrap { padding: 0 18px; }
+  .top { flex-direction: column; gap: 8px; padding-top: 18px; }
+  .lede { font-size: 20px; }
+  .feature { padding: 14px 12px 10px; margin-left: -6px; margin-right: -6px; }
+  .monitor { margin: 0 -8px; padding: 10px; }
+  .scopes { grid-template-columns: minmax(0, 1fr) 96px; }
+  pre { white-space: pre-wrap; word-break: break-all; }
+}
+
+@media print {
+  .monitor, .top nav, .projects .portrait, footer { display: none; }
+  body { font-size: 11pt; }
+  .block { grid-template-columns: 120px 1fr; padding-top: 16px; }
+  a { text-decoration: none; }
+}
+
+/* controls */
+.toggle { font: inherit; color: var(--night-muted); background: none; border: 1px solid #3A3C35; border-radius: 2px; padding: 0 6px; margin-left: 8px; cursor: pointer; }
+.toggle:hover { color: var(--night-ink); border-color: var(--night-muted); }
+.compare .slide { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
+.compare:focus-within .divider { box-shadow: 0 0 0 2px var(--olive); }

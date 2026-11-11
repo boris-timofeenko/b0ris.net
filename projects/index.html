@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Projects: b0ris.net</title>
+<link rel="stylesheet" href="../v/disc/disc.css">
+<style>
+html, body { margin: 0; background: #000; -webkit-text-size-adjust: 100%; }
+/* The main menu of P1 at full screen: 4:3 at the full height of the window, black bars at the sides,
+   the way a 640x480 game sat on a wide monitor. */
+.screen { --bar: 42px; --w: min(100vw, calc((100vh - var(--bar)) * 4 / 3)); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+@supports (height: 100dvh) { .screen { --w: min(100vw, calc((100dvh - var(--bar)) * 4 / 3)); min-height: 100dvh; } }
+.screen > .bar { align-self: stretch; min-height: var(--bar); }
+.game { position: relative; width: var(--w); aspect-ratio: 4 / 3; background: #000 url(../v/proto/menu-room.jpg) 0 0 / 100% 100%; container-type: inline-size; overflow: hidden; user-select: none; }
+.game > * { position: absolute; }
+/* the glass of the CRT in the render (tools/proto/room3d.py prints these) */
+.tv { left: 38.52%; top: 44.19%; width: 22.95%; height: 22.55%; background: #000; display: block; overflow: hidden; border-radius: 1.5% / 2%; }
+.tv > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tv img, .tv canvas { display: block; width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+.tv video { display: none; }
+.tv .strip { height: auto; animation: scrollup 14s linear infinite alternate; }
+.tv .pan { width: auto; max-width: none; height: 100%; animation: panx 16s ease-in-out infinite alternate; }
+.tv .zoom { animation: zoom 9s ease-in-out infinite alternate; transform-origin: 55% 45%; }
+.tv .snow { visibility: hidden; z-index: 3; }
+.tv .glass { z-index: 4; pointer-events: none; background:
+  linear-gradient(140deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 30%, rgba(255,255,255,0) 45%),
+  repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0 1px, rgba(0,0,0,0) 1px 3px);
+  box-shadow: inset 0 0 2.4cqw rgba(0,0,0,0.75); border-radius: inherit; }
+@keyframes scrollup { from { transform: translateY(0); } to { transform: translateY(-57%); } }
+@keyframes panx { from { transform: translateX(0); } to { transform: translateX(calc(-100% + 27.5cqw)); } }
+@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.35); } }
+
+.capbar { top: 1.2%; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 1.2cqw; pointer-events: none; }
+.capbar img { height: 3.3cqw; width: auto; image-rendering: pixelated; }
+.capbar button { pointer-events: auto; background: none; border: 0; padding: 0; cursor: pointer; line-height: 0; }
+.capbar button:active { transform: translateY(1px); }
+/* what the project is, on the desk under the keyboard */
+.about { top: 90.6%; left: 24%; right: 24%; margin: 0; text-align: center; font: bold 1.75cqw/1.3 Arial, Helvetica, sans-serif; color: #FFFFFF; pointer-events: none;
+  text-shadow: -1px -1px 0 #000033, 1px -1px 0 #000033, -1px 1px 0 #000033, 1px 1px 0 #000033, 2px 2px 0 #000033; }
+
+/* the keys, bottom right, the way PS2 menus showed their button prompts */
+.prompts { right: 2%; bottom: 1.6%; margin: 0; font: bold 1.5cqw/1 Arial, Helvetica, sans-serif; color: #FFFFFF; pointer-events: none;
+  text-shadow: 1px 1px 0 #000033, -1px 0 0 #000033; }
+.prompts kbd { font: inherit; display: inline-block; min-width: 1.2em; padding: 0.25em 0.35em; margin: 0 0.25em 0 0.7em; text-align: center; color: #000033; background: #CCEEFF; border-radius: 0.3em; text-shadow: none; }
+@media (hover: none) { .prompts { display: none; } }
+.zero { width: 13%; line-height: 0; transition: transform 0.2s steps(2); }
+.zero img { width: 100%; height: auto; }
+.zero .nm { display: block; width: max-content; margin: -0.6cqw auto 0; padding: 0.35cqw 0.9cqw; background: #000; color: #FFF; font: bold 1.55cqw/1 "Times New Roman", Times, serif; letter-spacing: 0.08em; text-transform: uppercase; }
+/* on the right wall a name wider than its medallion grows to the left, not off the screen */
+.zero.r { display: flex; flex-direction: column; align-items: flex-end; }
+.zero.r .nm { margin-right: 0; margin-left: 0; }
+.zero:hover, .zero.on { transform: translateY(-1.2%) rotate(-3deg); }
+.zero.on img { filter: brightness(1.12); }
+/* the dog stands on his blob shadow behind the CD */
+.dog { left: 66.5%; top: 47.5%; width: 18.75%; line-height: 0; cursor: pointer; }
+.dog img { width: 100%; height: auto; }
+.spot { display: block; }
+.glow { inset: 0; pointer-events: none; mix-blend-mode: screen; transition: background 0.4s;
+  background: radial-gradient(ellipse 26% 20% at 50% 55%, rgba(var(--glow, 120,150,200), 0.26), rgba(0,0,0,0) 100%),
+              radial-gradient(ellipse 30% 12% at 50% 84%, rgba(var(--glow, 120,150,200), 0.3), rgba(0,0,0,0) 100%); }
+.dim { inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 42%, rgba(0,0,30,0) 45%, rgba(0,0,30,0.42) 100%); }
+
+.tag { position: absolute; z-index: 6; white-space: nowrap; font: bold 2.3cqw/1.1 Arial, Helvetica, sans-serif; color: #FFFF33; visibility: hidden; pointer-events: none;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0 #000; }
+.tag::after { content: ""; display: block; width: 0; height: 0; margin: 0.3cqw auto 0; border: 1.1cqw solid transparent; border-top: 1.6cqw solid #FFFF33; border-bottom: 0; filter: drop-shadow(1px 1px 0 #000); }
+.tag.l::after { margin-left: 0.6cqw; }
+a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
+
+/* phones: the screen is as wide as the phone, and what it shows is written under it */
+.info { display: none; }
+@media (max-width: 700px), (max-aspect-ratio: 4/5) {
+  .screen { justify-content: flex-start; --w: 100vw; }
+  .about, .prompts { display: none; }
+  .info { display: block; box-sizing: border-box; width: 100%; flex: 1; padding: 18px 16px 20px; color: #CCEEFF; font: 17px/1.45 Arial, Helvetica, sans-serif; }
+  .info h2 { display: inline-block; margin: 0 0 8px; padding: 3px 8px; background: #FFF; color: #000; font: bold 15px/1 "Times New Roman", Times, serif; letter-spacing: 0.08em; text-transform: uppercase; }
+  .info p { margin: 0 0 14px; }
+  .info .open { display: inline-block; color: #000033; background: #FFFF66; padding: 6px 14px; text-decoration: none; font: 16px "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif; }
+  .info .all { margin-left: 8px; background: none; color: #FFFF66; border: 1px solid #6699CC; }
+  .tag { font-size: 3.4cqw; }
+}
+</style>
+</head>
+<body data-page="projects">
+<main class="screen">
+<nav class="bar" aria-label="Disc">
+<a href="../" data-back><kbd>Esc</kbd> Main menu</a>
+<span class="gap"></span>
+<a href="../cv/" data-nav="cv">CV</a>
+<a href="../projects/" data-nav="projects">Projects</a>
+<a href="../contacts/" data-nav="contacts">Contacts</a>
+</nav>
+
+<div class="game" data-menu data-up="../" data-proj="https://projects.b0ris.net">
+<a class="tv" data-tape-watch href="https://projects.b0ris.net/uvcdv-capture/" aria-label="The selected project">
+<div data-ch="tape" aria-label="uvcdv-capture, playing my tape"><video data-tape muted loop playsinline autoplay preload="auto" src="../media/tape-clean.mp4" aria-label="A clip from my MiniDV tape: the National Assembly in Belgrade, then my dog on a walk"></video><canvas data-scope="dither" width="220" height="169" aria-hidden="true"></canvas></div>
+<div data-ch="bolt" aria-label="Bolt" hidden><img src="../v/proto/tv/bolt-00.gif" alt=""><img src="../v/proto/tv/bolt-01.gif" alt="" hidden><img src="../v/proto/tv/bolt-02.gif" alt="" hidden><img src="../v/proto/tv/bolt-03.gif" alt="" hidden><img src="../v/proto/tv/bolt-04.gif" alt="" hidden><img src="../v/proto/tv/bolt-05.gif" alt="" hidden><img src="../v/proto/tv/bolt-06.gif" alt="" hidden><img src="../v/proto/tv/bolt-07.gif" alt="" hidden><img src="../v/proto/tv/bolt-08.gif" alt="" hidden><img src="../v/proto/tv/bolt-09.gif" alt="" hidden><img src="../v/proto/tv/bolt-10.gif" alt="" hidden><img src="../v/proto/tv/bolt-11.gif" alt="" hidden><img src="../v/proto/tv/bolt-12.gif" alt="" hidden><img src="../v/proto/tv/bolt-13.gif" alt="" hidden><img src="../v/proto/tv/bolt-14.gif" alt="" hidden><img src="../v/proto/tv/bolt-15.gif" alt="" hidden></div>
+<div data-ch="neslop" aria-label="ne-slop-text" hidden><img class="strip" src="../v/proto/tv/neslop.gif" alt=""></div>
+<div data-ch="parking" aria-label="GdeParkovka" hidden><img class="zoom" src="../v/proto/tv/parking.gif" alt=""></div>
+<div data-ch="genealogy" aria-label="Genealogy" hidden><img class="pan" src="../v/proto/tv/genealogy.gif" alt=""></div>
+<canvas class="snow" width="110" height="85" aria-hidden="true"></canvas>
+<span class="glass"></span>
+</a>
+
+<span class="dim" aria-hidden="true"></span><span class="glow" aria-hidden="true"></span>
+<div class="capbar">
+<button type="button" data-prev aria-label="Previous project"><img src="../v/proto/arrow-left.gif" width="32" height="32" alt=""></button>
+<img data-cap src="../v/proto/cap-tape.gif" alt="uvcdv-capture">
+<button type="button" data-next aria-label="Next project"><img src="../v/proto/arrow-right.gif" width="32" height="32" alt=""></button>
+</div>
+<p class="about" data-about aria-live="polite"></p>
+<p class="prompts"><kbd>&larr;</kbd><kbd>&rarr;</kbd>choose<kbd>Enter</kbd>open<kbd>Esc</kbd>back</p>
+
+<a class="zero" data-level="1" href="https://projects.b0ris.net/bolt/" style="left:0.6%;top:3%"><img src="../v/proto/zero-bolt-wall.gif" width="104" height="110" alt="Bolt, photo viewer"><span class="nm">Bolt</span><span class="tag l" style="left:60%;top:-6%">photo viewer</span></a>
+<a class="zero" data-level="2" href="https://projects.b0ris.net/ne-slop-text/" style="left:0.6%;top:23%"><img src="../v/proto/zero-neslop-wall.gif" width="104" height="110" alt="ne-slop-text, writing skill"><span class="nm">ne-slop-text</span><span class="tag l" style="left:60%;top:-6%">writing skill</span></a>
+<a class="zero" data-level="4" href="https://projects.b0ris.net/genealogy/" style="left:0.6%;top:43%"><img src="../v/proto/zero-genealogy-wall.gif" width="104" height="110" alt="Genealogy, family archive"><span class="nm">Genealogy</span><span class="tag l" style="left:60%;top:-6%">family archive</span></a>
+<a class="zero r" data-level="0" href="https://projects.b0ris.net/uvcdv-capture/" style="left:86.4%;top:5%"><img src="../v/proto/zero-uvcdv-wall.gif" width="104" height="110" alt="uvcdv-capture, MiniDV capture"><span class="nm">uvcdv-capture</span><span class="tag" style="right:30%;top:-6%">tape capture</span></a>
+<a class="zero r" data-level="3" href="https://projects.b0ris.net/gdeparkovka/" style="left:86.4%;top:25%"><img src="../v/proto/zero-parking-wall.gif" width="104" height="110" alt="GdeParkovka, parking map"><span class="nm">GdeParkovka</span><span class="tag" style="right:30%;top:-6%">parking map</span></a>
+<a class="spot" href="../list/" style="left:77.3%;top:75.45%;width:11.18%;height:8.95%" aria-label="All projects"><span class="tag" style="right:10%;top:-60%">all projects</span></a>
+<div class="dog" data-dog><img src="../v/proto/dog.gif" width="150" height="150" alt="My dog, cut out of the tape"><span class="tag" style="right:30%;top:-10%">my dog</span></div>
+</div>
+
+<div class="info">
+<h2 data-name>uvcdv-capture</h2>
+<p data-about></p>
+<a class="open" data-open href="https://projects.b0ris.net/uvcdv-capture/">Open &#9654;</a>
+<a class="open all" href="../list/">All projects</a>
+</div>
+
+</main>
+<script src="../v/tape.js"></script>
+<script src="../v/proto/menu.js"></script>
+<script src="../v/disc/disc.js"></script>
+</body>
+</html>
