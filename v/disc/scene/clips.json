@@ -70,6 +70,33 @@
    }
   },
   {
+   "id": "idle_scratch",
+   "kind": "idle",
+   "frames": 192,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/idle_scratch.avc.mp4?v=15da2eb1",
+      "bytes": 2555164
+     },
+     "av1": {
+      "url": "desktop/idle_scratch.av1.mp4?v=d71aec66",
+      "bytes": 645173
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/idle_scratch.avc.mp4?v=07dcdff7",
+      "bytes": 1320936
+     },
+     "av1": {
+      "url": "mobile/idle_scratch.av1.mp4?v=d76a8847",
+      "bytes": 334021
+     }
+    }
+   }
+  },
+  {
    "id": "pet",
    "kind": "episode",
    "frames": 288,
@@ -124,6 +151,87 @@
    }
   },
   {
+   "id": "fetch",
+   "kind": "episode",
+   "frames": 384,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/fetch.avc.mp4?v=b1c7f6cd",
+      "bytes": 5201207
+     },
+     "av1": {
+      "url": "desktop/fetch.av1.mp4?v=4012b4a4",
+      "bytes": 1057736
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/fetch.avc.mp4?v=f140d239",
+      "bytes": 2730241
+     },
+     "av1": {
+      "url": "mobile/fetch.av1.mp4?v=ba14e354",
+      "bytes": 582631
+     }
+    }
+   }
+  },
+  {
+   "id": "belly",
+   "kind": "episode",
+   "frames": 288,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/belly.avc.mp4?v=1889093a",
+      "bytes": 3904779
+     },
+     "av1": {
+      "url": "desktop/belly.av1.mp4?v=98872ee7",
+      "bytes": 896994
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/belly.avc.mp4?v=aa915ed1",
+      "bytes": 2059297
+     },
+     "av1": {
+      "url": "mobile/belly.av1.mp4?v=c3c72240",
+      "bytes": 496510
+     }
+    }
+   }
+  },
+  {
+   "id": "gull",
+   "kind": "episode",
+   "frames": 192,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/gull.avc.mp4?v=59fe1cd0",
+      "bytes": 2616011
+     },
+     "av1": {
+      "url": "desktop/gull.av1.mp4?v=9080376e",
+      "bytes": 632836
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/gull.avc.mp4?v=81068795",
+      "bytes": 1365471
+     },
+     "av1": {
+      "url": "mobile/gull.av1.mp4?v=4d570fa1",
+      "bytes": 342659
+     }
+    }
+   }
+  },
+  {
    "id": "sniff_shake",
    "kind": "episode",
    "frames": 192,
@@ -146,6 +254,60 @@
      "av1": {
       "url": "mobile/sniff_shake.av1.mp4?v=a41a8747",
       "bytes": 324081
+     }
+    }
+   }
+  },
+  {
+   "id": "leap_out",
+   "kind": "exit",
+   "frames": 72,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/leap_out.avc.mp4?v=d88fc901",
+      "bytes": 1059744
+     },
+     "av1": {
+      "url": "desktop/leap_out.av1.mp4?v=380dcc47",
+      "bytes": 337531
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/leap_out.avc.mp4?v=51f1cea0",
+      "bytes": 559834
+     },
+     "av1": {
+      "url": "mobile/leap_out.av1.mp4?v=062939e1",
+      "bytes": 182975
+     }
+    }
+   }
+  },
+  {
+   "id": "come_back",
+   "kind": "enter",
+   "frames": 192,
+   "files": {
+    "desktop": {
+     "avc": {
+      "url": "desktop/come_back.avc.mp4?v=9cf3d147",
+      "bytes": 2593215
+     },
+     "av1": {
+      "url": "desktop/come_back.av1.mp4?v=6a78a789",
+      "bytes": 651456
+     }
+    },
+    "mobile": {
+     "avc": {
+      "url": "mobile/come_back.avc.mp4?v=24bad8ea",
+      "bytes": 1348007
+     },
+     "av1": {
+      "url": "mobile/come_back.av1.mp4?v=987c7bf9",
+      "bytes": 339712
      }
     }
    }
