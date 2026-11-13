@@ -6,12 +6,12 @@
     if (e.key === "Escape" && back) location.href = back.href;
   });
 
-  // The autorun's film: the clip library played by scene-player.js (never the same 24 s twice). With reduced motion
-  // the poster stands still. On phones the film fills only the part of the art above the panel.
+  // The autorun's film: the clip library played by scene-player.js (never the same 24 s twice). It plays also when the
+  // system asks for reduced motion: many people turn animations off for speed, and to them a still poster looked like a
+  // broken site (13 Nov 2026). On phones the film fills only the part of the art above the panel.
   var film = document.querySelector("[data-scene]");
   if (film) {
     var art = film.parentNode, panel = document.querySelector(".panel");
-    var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     var player = null;
     var fit = function () {
       var phone = window.matchMedia && matchMedia("(max-width: 700px)").matches && panel;
@@ -19,7 +19,7 @@
     };
     fit();
     window.addEventListener("resize", fit);
-    if (!still && window.ScenePlayer) player = ScenePlayer.start(film, film.dataset.scene);
+    if (window.ScenePlayer) player = ScenePlayer.start(film, film.dataset.scene);
     window.discScene = function () { return player; };
   }
 

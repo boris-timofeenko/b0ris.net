@@ -4,7 +4,6 @@
 (function () {
   var video = document.querySelector("video[data-tape]");
   if (!video) return;
-  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var W = +(video.getAttribute("data-res") || 160), H = Math.round(W * 3 / 4), WH = +(video.getAttribute("data-levels") || 100), VS = 96;
   var probe = document.createElement("canvas");
   probe.width = W; probe.height = H;
@@ -14,7 +13,7 @@
   var vn = new Float32Array(VS * VS), vr = new Float32Array(VS * VS), vg = new Float32Array(VS * VS), vb = new Float32Array(VS * VS);
   var cols = new Float32Array(W), hist = new Uint32Array(256);
   var listeners = [], frames = 0;
-  window.Tape = { on: function (fn) { listeners.push(fn); }, video: video, still: still };
+  window.Tape = { on: function (fn) { listeners.push(fn); }, video: video };
 
   var bars = [["R", 191, 0, 0], ["MG", 191, 0, 191], ["B", 0, 0, 191], ["CY", 0, 191, 191], ["G", 0, 191, 0], ["YL", 191, 191, 0]]
     .map(function (b) { return [b[0], cb(b[1], b[2], b[3]), cr(b[1], b[2], b[3])]; });
@@ -209,8 +208,8 @@
   video.addEventListener("pause", setLabel);
   video.addEventListener("play", setLabel);
   function start() {
-    if (still) { video.pause(); video.currentTime = 1.0; setLabel(); }
-    else { var p = video.play(); if (p && p.catch) p.catch(function () { video.currentTime = 1.0; setLabel(); }); }
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { video.currentTime = 1.0; setLabel(); });
     loop();
   }
   if (video.readyState >= 2) start(); else video.addEventListener("loadeddata", start, { once: true });

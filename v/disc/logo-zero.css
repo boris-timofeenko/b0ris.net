@@ -7,4 +7,3 @@
 @keyframes zl-type { 0% { clip-path: inset(0 100% 0 0); } 10.0% { clip-path: inset(0 86.10% 0 0); } 20.0% { clip-path: inset(0 72.46% 0 0); } 30.0% { clip-path: inset(0 63.37% 0 0); } 40.0% { clip-path: inset(0 56.68% 0 0); } 50.0% { clip-path: inset(0 44.39% 0 0); } 60.0% { clip-path: inset(0 37.70% 0 0); } 70.0% { clip-path: inset(0 24.06% 0 0); } 80.0% { clip-path: inset(0 10.43% 0 0); } 90.0% { clip-path: inset(0 0.00% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
 @keyframes zl-strike { from { clip-path: inset(100% 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes zl-strike-again { from { clip-path: inset(100% 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
-@media (prefers-reduced-motion: reduce) { .zl-letters, .zl-slash, .zl:hover .zl-slash { animation: none; } }

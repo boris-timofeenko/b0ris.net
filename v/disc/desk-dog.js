@@ -3,13 +3,12 @@
 // mouse, or to the project chosen in the menu, and back to the visitor when nothing happens; she blinks now and then
 // and wags now and then. Layers, bottom up: her body (base), her head (a cross-fade of the four nearest of the 13 x 3
 // rendered head positions while it turns, one of them at rest), her tail, her shut eyes during a blink.
-// With reduced motion, or without the script, the still picture in the page stays.
+// Without the script the still picture in the page stays.
 (function () {
   // phones held upright see the room through a camera of their own, so she has a set of layers for each
   var camera = matchMedia("(max-width: 700px), (max-aspect-ratio: 4/5)").matches ? "phone" : "room";
   var dog = document.querySelector("[data-dog]"), game = document.querySelector("[data-menu]"), T = (window.TUNDRA || {})[camera];
   if (!dog || !game || !T) return;
-  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   var LOOK_DEPTH = 0.3;   // how far in front of her a target on the screen is, in stage widths: smaller turns her more
   var TURN_TIME = 0.09;   // seconds: how quickly her head closes on what she looks at

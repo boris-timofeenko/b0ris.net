@@ -4,7 +4,6 @@
   var game = document.querySelector("[data-menu]");
   if (!game) return;
   var up = game.getAttribute("data-up"), proj = game.getAttribute("data-proj");
-  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var levels = [
     { key: "tape", name: "uvcdv-capture", href: proj + "/uvcdv-capture/", counters: [["tape", "1.12.1"], ["star", "12 stars"]],
       about: "Captures MiniDV tapes over USB on a Mac that has no FireWire." },
@@ -24,7 +23,6 @@
   var current = -1, flipTimer = null;
 
   function noise(ms) {
-    if (still) return;
     var end = performance.now() + ms;
     snow.style.visibility = "visible";
     (function frame() {
@@ -54,7 +52,7 @@
     document.querySelectorAll("[data-open]").forEach(function (el) { el.href = L.href; });
     if (L.glow) game.style.setProperty("--glow", L.glow);
     clearInterval(flipTimer);
-    if (L.key === "bolt" && !still) {
+    if (L.key === "bolt") {
       var imgs = screens.bolt.querySelectorAll("img"), n = 0;
       flipTimer = setInterval(function () { imgs.forEach(function (im, k) { im.hidden = k !== n; }); n = (n + 1) % imgs.length; }, 450);
     }
