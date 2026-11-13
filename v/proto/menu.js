@@ -8,7 +8,7 @@
   var levels = [
     { key: "tape", name: "uvcdv-capture", href: proj + "/uvcdv-capture/", counters: [["tape", "1.12.1"], ["star", "12 stars"]],
       about: "Captures MiniDV tapes over USB on a Mac that has no FireWire." },
-    { key: "bolt", name: "Bolt", href: proj + "/bolt/", counters: [["photo", "48 photos"], ["watch", "3.9 ms"]], glow: "110,150,210",
+    { key: "bolt", name: "Bolt", href: proj + "/bolt/", counters: [["photo", "202 photos"], ["watch", "41 ms"]], glow: "110,150,210",
       about: "Photo viewer for macOS. Open one photo, go through the whole folder, one key per decision." },
     { key: "neslop", name: "ne-slop-text", href: proj + "/ne-slop-text/", counters: [["page", "6 pages"], ["check", "26 features"]], glow: "200,200,190",
       about: "Claude Code skill that moves a text away from what models write by default." },

@@ -154,6 +154,10 @@ td.num, .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .chart .scale line { stroke: var(--ink); stroke-width: 1.2; }
 .chart .scale text { text-anchor: middle; fill: var(--ink); font-size: 12px; }
 .chart.bolt .bar { fill: var(--ink); }
+.chart.viewers .bar { fill: var(--stone); }
+.chart.viewers .bar.bolt { fill: var(--olive); }
+.chart.viewers .name { fill: var(--ink); font-size: 14px; }
+.chart.viewers .tick { font-size: 13px; }
 .chart.bolt .budget { stroke: var(--red); stroke-width: 1.4; }
 .chart.bolt .median { stroke: var(--olive); stroke-width: 1.4; stroke-dasharray: 5 4; }
 .chart.bolt .note { fill: var(--red); font-size: 13px; }
