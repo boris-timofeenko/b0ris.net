@@ -1,0 +1,2 @@
+// Written by tools/proto/paint_tundra.py: the sizes of the Paint Tundra's sheets.
+window.PAINT_TUNDRA = {"desk":{"w":224,"h":339,"cols":13,"rows":3,"eyes":[99.9,88.4],"visitor":[10.9,5.8],"yaws":[-60,-50,-40,-30,-20,-10,0,10,20,30,40,50,60],"pitches":[-15,0,15],"tail":[174,177,218,245],"tailFrames":12},"phone":{"w":172,"h":261,"cols":13,"rows":3,"eyes":[76.9,68.7],"visitor":[10.9,5.8],"yaws":[-60,-50,-40,-30,-20,-10,0,10,20,30,40,50,60],"pitches":[-15,0,15],"tail":[133,135,167,187],"tailFrames":12}};
