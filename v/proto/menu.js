@@ -12,9 +12,7 @@
     { key: "neslop", name: "ne-slop-text", href: proj + "/ne-slop-text/", counters: [["page", "6 pages"], ["check", "26 features"]], glow: "200,200,190",
       about: "Claude Code skill that moves a text away from what models write by default." },
     { key: "parking", name: "GdeParkovka", href: proj + "/gdeparkovka/", counters: [["parking", "367 points"], ["calendar", "July 2026"]], glow: "170,190,160",
-      about: "Map of free parking in Russia. Drivers add the points." },
-    { key: "genealogy", name: "Genealogy", href: proj + "/genealogy/", counters: [["person", "215 people"], ["scroll", "123 sources"]], glow: "210,205,190",
-      about: "Knowledge base of my mother\u2019s family line, in plain files and git." }
+      about: "Map of free parking in Russia. Drivers add the points." }
   ];
   var tv = game.querySelector(".tv"), cap = game.querySelector("[data-cap]"), counters = game.querySelector("[data-counters]");
   var screens = {};

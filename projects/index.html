@@ -54,7 +54,6 @@ html, body { margin: 0; background: #000; -webkit-text-size-adjust: 100%; }
 .zero[data-level="1"] { left: 0.6%; top: 3%; }
 .zero[data-level="2"] { left: 0.6%; top: 23%; }
 .zero[data-level="3"] { right: 0.6%; top: 25%; }
-.zero[data-level="4"] { left: 0.6%; top: 43%; }
 .zero .nm { display: block; width: max-content; margin: calc(-0.6 * var(--u)) auto 0; padding: calc(0.35 * var(--u)) calc(0.9 * var(--u)); background: #000; color: #FFF; font: bold calc(1.55 * var(--u))/1 "Times New Roman", Times, serif; letter-spacing: 0.08em; text-transform: uppercase; }
 /* on the right wall a name wider than its medallion grows to the left, not off the screen */
 .zero.r { display: flex; flex-direction: column; align-items: flex-end; }
@@ -96,8 +95,8 @@ a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
   .zero .nm { display: none; }
   .zero.on { transform: translateY(-4%) scale(1.12); }
   .zero[data-level] { top: 3vw; right: auto; }
-  .zero[data-level="0"] { left: 2.5vw; } .zero[data-level="1"] { left: 21.75vw; } .zero[data-level="2"] { left: 41vw; }
-  .zero[data-level="3"] { left: 60.25vw; } .zero[data-level="4"] { left: 79.5vw; }
+  .zero[data-level="0"] { left: 6.4vw; } .zero[data-level="1"] { left: 29.8vw; } .zero[data-level="2"] { left: 53.2vw; }
+  .zero[data-level="3"] { left: 76.6vw; }
   .capbar { top: calc(3vw + 18vw + 4vw); gap: 2vw; }
   .capbar img { height: 6.6vw; }
   .about, .prompts { display: none; }
@@ -130,7 +129,6 @@ a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
 <div data-ch="bolt" aria-label="Bolt" hidden><img src="../v/proto/tv/bolt-00.gif?v=f9b78617" alt=""><img src="../v/proto/tv/bolt-01.gif?v=777e9a08" alt="" hidden><img src="../v/proto/tv/bolt-02.gif?v=1770ad70" alt="" hidden><img src="../v/proto/tv/bolt-03.gif?v=4e6ebb5a" alt="" hidden><img src="../v/proto/tv/bolt-04.gif?v=e1c7c0a1" alt="" hidden><img src="../v/proto/tv/bolt-05.gif?v=3db861fa" alt="" hidden><img src="../v/proto/tv/bolt-06.gif?v=394e3b3c" alt="" hidden><img src="../v/proto/tv/bolt-07.gif?v=4099d8c2" alt="" hidden><img src="../v/proto/tv/bolt-08.gif?v=a8b8290f" alt="" hidden><img src="../v/proto/tv/bolt-09.gif?v=70c81fd9" alt="" hidden><img src="../v/proto/tv/bolt-10.gif?v=7f170734" alt="" hidden><img src="../v/proto/tv/bolt-11.gif?v=bd52ccd6" alt="" hidden><img src="../v/proto/tv/bolt-12.gif?v=4b5c3770" alt="" hidden><img src="../v/proto/tv/bolt-13.gif?v=e9ee8fec" alt="" hidden><img src="../v/proto/tv/bolt-14.gif?v=d5c98f9f" alt="" hidden><img src="../v/proto/tv/bolt-15.gif?v=09cc8b77" alt="" hidden></div>
 <div data-ch="neslop" aria-label="ne-slop-text" hidden><img class="strip" src="../v/proto/tv/neslop.gif?v=2a66b336" alt=""></div>
 <div data-ch="parking" aria-label="GdeParkovka" hidden><img class="zoom" src="../v/proto/tv/parking.gif?v=4f682c6f" alt=""></div>
-<div data-ch="genealogy" aria-label="Genealogy" hidden><img class="pan" src="../v/proto/tv/genealogy.gif?v=e4c62fda" alt=""></div>
 <canvas class="snow" width="110" height="85" aria-hidden="true"></canvas>
 <span class="glass"></span>
 </a>
@@ -142,7 +140,6 @@ a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
 </div>
 <a class="zero" data-level="1" href="https://projects.b0ris.net/bolt/"><img src="../v/proto/zero-bolt-wall.gif?v=e0fbbce4" width="104" height="110" alt="Bolt, photo viewer"><span class="nm">Bolt</span><span class="tag l" style="left:60%;top:-6%">photo viewer</span></a>
 <a class="zero" data-level="2" href="https://projects.b0ris.net/ne-slop-text/"><img src="../v/proto/zero-neslop-wall.gif?v=f4c5f193" width="104" height="110" alt="ne-slop-text, writing skill"><span class="nm">ne-slop-text</span><span class="tag l" style="left:60%;top:-6%">writing skill</span></a>
-<a class="zero" data-level="4" href="https://projects.b0ris.net/genealogy/"><img src="../v/proto/zero-genealogy-wall.gif?v=fc03e690" width="104" height="110" alt="Genealogy, family archive"><span class="nm">Genealogy</span><span class="tag l" style="left:60%;top:-6%">family archive</span></a>
 <a class="zero r" data-level="0" href="https://projects.b0ris.net/uvcdv-capture/"><img src="../v/proto/zero-uvcdv-wall.gif?v=f507d42b" width="104" height="110" alt="uvcdv-capture, MiniDV capture"><span class="nm">uvcdv-capture</span><span class="tag" style="right:30%;top:-6%">tape capture</span></a>
 <a class="zero r" data-level="3" href="https://projects.b0ris.net/gdeparkovka/"><img src="../v/proto/zero-parking-wall.gif?v=ac97946d" width="104" height="110" alt="GdeParkovka, parking map"><span class="nm">GdeParkovka</span><span class="tag" style="right:30%;top:-6%">parking map</span></a>
 <div class="capbar">
@@ -162,7 +159,7 @@ a:hover > .tag, a:focus > .tag, .dog:hover > .tag { visibility: visible; }
 
 </main>
 <script src="../v/tape.js?v=49923b1c"></script>
-<script src="../v/proto/menu.js?v=43e74419"></script>
+<script src="../v/proto/menu.js?v=e51fffcd"></script>
 <script src="../v/disc/tundra/frames.js?v=02a655b9"></script>
 <script src="../v/disc/tundra/phone/frames.js?v=1a488e34"></script>
 <script src="../v/disc/desk-dog.js?v=651a8650"></script>
