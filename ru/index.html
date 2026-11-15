@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>b0ris.net: Борис Тимофеенко</title>
+<link rel="stylesheet" href="../v/disc/logo-zero.css?v=f6f0f025">
+<style>
+html, body { margin: 0; background: #000; -webkit-text-size-adjust: 100%; }
+img { image-rendering: pixelated; }
+/* The autorun of a game disc, gone full screen: the art behind everything, the buttons on a dark panel on the right */
+.autorun { position: relative; height: 100vh; height: 100dvh; min-height: 520px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) clamp(280px, 25vw, 360px); }
+/* the scene: him by the pine over the sea, Tundra digging and running round him; a 24 s loop rendered in Blender,
+   in two versions (the normal film and the PlayStation 2 one); the still is the first frame of the loop */
+.art { grid-area: 1 / 1 / 2 / 3; overflow: hidden; background: #336 url(../v/disc/scene/poster-desktop.jpg?v=3aff9dbf) 48% 60% / cover; }
+.art video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% 60%; }
+/* a background, not a player: no play button over it when the phone will not start it by itself */
+.art video::-webkit-media-controls, .art video::-webkit-media-controls-start-playback-button,
+.art video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
+.head { position: absolute; left: clamp(16px, 4vw, 56px); top: clamp(16px, 6vh, 56px); right: calc(clamp(280px, 25vw, 360px) + 16px); }
+.head h1 { margin: 0; line-height: 0; }
+.head img { max-width: 100%; height: auto; }
+/* the name and the job as two stickers on the art */
+.who { margin: 16px 0 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.who span { padding: 4px 10px; font: bold 17px/1.25 Arial, Helvetica, sans-serif; box-shadow: 3px 3px 0 #000; }
+.who .name { background: #FFCC00; color: #000033; text-transform: uppercase; letter-spacing: 0.02em; }
+.who .job { background: #000; color: #FFFFFF; font-size: 15px; }
+
+
+.panel { grid-area: 1 / 2 / 2 / 3; position: relative; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 0 clamp(16px, 2vw, 32px);
+  border-left: 2px solid #FFCC00;
+  background: linear-gradient(rgba(0,0,51,0.84) 0 17%, rgba(0,0,43,0.84) 17% 33%, rgba(0,0,34,0.84) 33% 50%, rgba(0,0,26,0.84) 50% 67%, rgba(0,0,17,0.84) 67% 83%, rgba(0,0,8,0.84) 83%); }
+.btns { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.btns a { display: block; width: 260px; max-width: 100%; aspect-ratio: 260 / 58; background-repeat: no-repeat; background-size: 100% 200%; background-position: 0 0; font-size: 0; color: transparent; image-rendering: pixelated; }
+.btns a:hover, .btns a:focus { background-position: 0 100%; outline: none; }
+/* the language: two words at the foot of the panel, the current one boxed in yellow; no flags */
+.lang { position: absolute; right: 0; bottom: 18px; width: clamp(280px, 25vw, 360px); margin: 0; display: flex; justify-content: center; gap: 4px;
+  font: 14px/1.3 "Arial Rounded MT Bold", "Arial Black", Arial, Helvetica, sans-serif; }
+.lang a, .lang span { padding: 2px 8px; border: 1px solid transparent; color: #CCEEFF; text-decoration: none; }
+.lang a:hover, .lang a:focus-visible { color: #FFFF66; border-color: #6699CC; outline: none; }
+.lang [aria-current] { color: #FFCC00; border-color: #FFCC00; }
+
+
+/* phones: the art on top, the panel under it */
+@media (max-width: 700px) {
+  .autorun { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; min-height: 560px; }
+  .art { grid-area: 1 / 1 / 3 / 2; background-image: url(../v/disc/scene/poster-mobile.jpg?v=aa169ae4); background-position: 50% 0; }
+  .art video { object-position: 50% 50%; }
+  /* the logo stays on top; the name and the job go down to the bottom of the film, off his face. The header takes the
+     film's grid row as its box (an absolute box in a grid can), so its bottom is the panel's top whatever the phone */
+  .head { grid-area: 1 / 1 / 2 / 2; left: 16px; right: 16px; top: 44px; bottom: 14px; display: flex; flex-direction: column; }
+  .who { margin-top: auto; align-items: flex-end; text-align: right; }  /* to the right: Tundra digs on the left */
+  .who .job { max-width: 75%; }
+  .who span { font-size: 13px; } .who .job { font-size: 12px; }
+  /* a low panel, so the film (and Tundra digging at its bottom left) gets the most of the screen */
+  .panel { grid-area: 2 / 1 / 3 / 2; border-left: 0; border-top: 2px solid #FFCC00; padding: 10px 16px 12px; }
+  .btns { gap: 8px; }
+  .btns a { width: 180px; }
+  /* on a phone the panel has no room: the language goes to the top right corner of the film */
+  .lang { top: 10px; bottom: auto; right: 10px; width: auto; font-size: 13px; background: rgba(0,0,51,0.7); }
+}
+</style>
+</head>
+<body>
+<main class="autorun" data-autorun>
+<div class="art" role="img" aria-label="Я у сосны над морем в Черногории, а моя собака Тундра роет землю и носится вокруг меня">
+<video data-scene="../v/disc/scene/" autoplay muted playsinline preload="auto"
+ disablepictureinpicture></video>
+</div>
+<header class="head">
+<h1>
+<span class="zl"><img class="zl-letters" src="../v/disc/logo-zero.gif?v=affc822a" width="374" height="68" alt="b0ris.net"><img class="zl-slash" src="../v/disc/logo-zero-slash.gif?v=807dd9f9" width="49" height="55" alt="" style="left:14.44%;top:10.29%;width:13.10%"></span>
+
+</h1>
+<p class="who"><span class="name">Борис Тимофеенко</span><span class="job">Senior SDET и QA Tech Lead</span></p>
+</header>
+<nav class="panel" aria-label="Главное меню">
+<div class="btns">
+<a href="cv/" style="background-image:url(../v/disc/btn-cv-ru.gif?v=a4a22dc1)">Резюме</a>
+<a href="projects/" style="background-image:url(../v/disc/btn-projects-ru.gif?v=93e93ab2)">Проекты</a>
+<a href="contacts/" style="background-image:url(../v/disc/btn-contacts-ru.gif?v=9e086b97)">Контакты</a>
+</div>
+</nav>
+<p class="lang" aria-label="Язык"><a href="../" hreflang="en" lang="en">English</a><span aria-current="true">Русский</span></p>
+</main>
+<script src="../v/disc/scene-player.js?v=c58a98f6"></script>
+<script src="../v/disc/disc.js?v=6a7d03bd"></script>
+</body>
+</html>

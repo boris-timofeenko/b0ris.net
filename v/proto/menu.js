@@ -4,15 +4,17 @@
   var game = document.querySelector("[data-menu]");
   if (!game) return;
   var up = game.getAttribute("data-up"), proj = game.getAttribute("data-proj");
+  var ru = document.documentElement.lang === "ru";
+  if (ru) proj += "/ru";  // the Russian project pages are at projects.b0ris.net/ru/
   var levels = [
-    { key: "tape", name: "uvcdv-capture", href: proj + "/uvcdv-capture/", counters: [["tape", "1.12.1"], ["star", "12 stars"]],
-      about: "Captures MiniDV tapes over USB on a Mac that has no FireWire." },
-    { key: "bolt", name: "Bolt", href: proj + "/bolt/", counters: [["photo", "202 photos"], ["watch", "41 ms"]], glow: "110,150,210",
-      about: "Photo viewer for macOS. Open one photo, go through the whole folder, one key per decision." },
-    { key: "neslop", name: "ne-slop-text", href: proj + "/ne-slop-text/", counters: [["page", "6 pages"], ["check", "26 features"]], glow: "200,200,190",
-      about: "Claude Code skill that moves a text away from what models write by default." },
-    { key: "parking", name: "GdeParkovka", href: proj + "/gdeparkovka/", counters: [["parking", "367 points"], ["calendar", "July 2026"]], glow: "170,190,160",
-      about: "Map of free parking in Russia. Drivers add the points." }
+    { key: "tape", name: "uvcdv-capture", href: proj + "/uvcdv-capture/", counters: [["tape", "1.12.1"], ["star", ru ? "12 звёзд" : "12 stars"]],
+      about: ru ? "Захватывает кассеты MiniDV по USB на Mac без FireWire." : "Captures MiniDV tapes over USB on a Mac that has no FireWire." },
+    { key: "bolt", name: "Bolt", href: proj + "/bolt/", counters: [["photo", ru ? "202 фото" : "202 photos"], ["watch", ru ? "41 мс" : "41 ms"]], glow: "110,150,210",
+      about: ru ? "Просмотрщик фото для macOS. Открыл одно фото — листаешь всю папку, одна клавиша на решение." : "Photo viewer for macOS. Open one photo, go through the whole folder, one key per decision." },
+    { key: "neslop", name: "ne-slop-text", href: proj + "/ne-slop-text/", counters: [["page", ru ? "6 страниц" : "6 pages"], ["check", ru ? "26 признаков" : "26 features"]], glow: "200,200,190",
+      about: ru ? "Скилл для Claude Code, который уводит текст от того, что модели пишут по умолчанию." : "Claude Code skill that moves a text away from what models write by default." },
+    { key: "parking", name: "GdeParkovka", href: proj + "/gdeparkovka/", counters: [["parking", ru ? "367 точек" : "367 points"], ["calendar", ru ? "июль 2026" : "July 2026"]], glow: "170,190,160",
+      about: ru ? "Карта бесплатных парковок в России. Точки добавляют сами водители." : "Map of free parking in Russia. Drivers add the points." }
   ];
   var tv = game.querySelector(".tv"), cap = game.querySelector("[data-cap]"), counters = game.querySelector("[data-counters]");
   var screens = {};

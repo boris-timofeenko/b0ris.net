@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Все проекты: b0ris.net</title>
+<link rel="stylesheet" href="../../v/disc/disc.css?v=6da0a4ae">
+<style>
+/* All projects as a PS2 menu list: the room of the projects menu behind, dimmed as when a game pauses, and a card
+   per project rendered in 3D (tools/proto/cards3d.py) that turns under the pointer, like the selected item did. */
+html { background: #000022; -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100vh; color: #CCEEFF; font: 17px/1.45 Arial, Helvetica, sans-serif;
+  background: linear-gradient(rgba(0,0,30,0.74), rgba(0,0,30,0.74)), #000022 url(../../v/proto/menu-room.jpg?v=ae94d8cd) center / cover fixed; }
+[data-page="list"] .bar [data-nav="projects"] { border-color: #6699CC; }
+.list { max-width: 900px; margin: 0 auto; padding: 26px 16px 48px; }
+.list h1 { margin: 0 0 14px; line-height: 0; text-align: center; }
+.list h1 img { image-rendering: pixelated; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.card { display: grid; grid-template-columns: 400px minmax(0, 1fr); align-items: center; gap: 4px 22px; padding: 0 16px 0 0; color: inherit; text-decoration: none; border: 2px solid transparent; }
+.card:hover, .card:focus { border-color: #6699CC; background: rgba(0,0,51,0.6); outline: none; }
+.slab { display: block; width: 400px; max-width: 100%; aspect-ratio: 400 / 275; background-repeat: no-repeat; background-size: 800% 100%; background-position: 0 0; }
+.card:hover .slab, .card:focus .slab { animation: turn 0.9s steps(8, jump-none) infinite alternate; }
+@keyframes turn { from { background-position-x: 0%; } to { background-position-x: 100%; } }
+.card b { display: block; font: 27px/1.1 "Arial Black", "Arial Bold", Arial, sans-serif; color: #FFFFFF; text-shadow: 2px 2px 0 #000; }
+.card:hover b, .card:focus b { color: #FFFF66; }
+.card .what { display: block; margin: 8px 0 14px; }
+.card .go { display: inline-block; padding: 4px 12px; color: #000033; background: #FFFF66; font: 15px "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif; box-shadow: 2px 2px 0 #000; }
+@media (max-width: 760px) {
+  .card { grid-template-columns: minmax(0, 1fr); padding: 0 12px 16px; }
+  .slab { margin: 0 auto; }
+}
+</style>
+</head>
+<body data-page="list">
+<nav class="bar" aria-label="Диск">
+<a href="../" data-back><kbd>Esc</kbd> Главное меню</a>
+<span class="gap"></span>
+<a href="../cv/" data-nav="cv">Резюме</a>
+<a href="../projects/" data-nav="projects">Проекты</a>
+<a href="../contacts/" data-nav="contacts">Контакты</a>
+<a href="../../list/" hreflang="en" lang="en">English</a>
+</nav>
+
+<main class="list">
+<h1><img src="../../v/disc/title-projects-ru.gif?v=d07b25c2" width="173" height="30" alt="Проекты"></h1>
+<ul class="cards">
+<li><a class="card" href="https://projects.b0ris.net/ru/uvcdv-capture/"><span class="slab" style="background-image:url(../../v/disc/card-uvcdv.webp?v=923b9edc)" role="img" aria-label="Окно uvcdv-capture на карточке"></span><span><b>uvcdv-capture</b><span class="what">Оцифровывает кассеты MiniDV по USB на Маке без FireWire.</span><span class="go">Открыть &#9654;</span></span></a></li>
+<li><a class="card" href="https://projects.b0ris.net/ru/bolt/"><span class="slab" style="background-image:url(../../v/disc/card-bolt.webp?v=8e894f54)" role="img" aria-label="Bolt с одной из моих фотографий на карточке"></span><span><b>Bolt</b><span class="what">Быстрый просмотрщик фото для macOS.</span><span class="go">Открыть &#9654;</span></span></a></li>
+<li><a class="card" href="https://projects.b0ris.net/ru/ne-slop-text/"><span class="slab" style="background-image:url(../../v/disc/card-neslop.webp?v=f66e1dba)" role="img" aria-label="Слепой тест ne-slop-text на карточке"></span><span><b>ne-slop-text</b><span class="what">Навык для Claude Code, который уводит текст от того, что модели пишут по умолчанию.</span><span class="go">Открыть &#9654;</span></span></a></li>
+<li><a class="card" href="https://projects.b0ris.net/ru/gdeparkovka/"><span class="slab" style="background-image:url(../../v/disc/card-parking.webp?v=9e7ed07d)" role="img" aria-label="Карта GdeParkovka на карточке"></span><span><b>GdeParkovka</b><span class="what">Карта бесплатных парковок в России. Точки добавляют водители.</span><span class="go">Открыть &#9654;</span></span></a></li>
+</ul>
+</main>
+<script src="../../v/disc/disc.js?v=6a7d03bd"></script>
+</body>
+</html>
